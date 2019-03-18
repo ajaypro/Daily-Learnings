@@ -16,3 +16,5 @@
 * Headless fragments are used for common code usage like internet connectivity, permissions check, 
   which is like a replacement of base class of activity which can be extended only once whereas fragments 
   can reused by actvities.
+* To remove fragments from backstack use `remove()`and to remove multiple fragments from backstack use 
+ `popBackStack()` or `popBackStack(string, POP_BACK_STACK_INCLUSIVE)`
