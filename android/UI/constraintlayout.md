@@ -12,7 +12,16 @@
 * Based on width and height this can be done in 3 ways 
 * Hardcode value in dp
 * WRAP_CONTENT
-* use attributes `layout_constraintWidth` & `layout_constraintHeight` as these would behave w.r to given constraints
-* Also has modifiers such as `android:minWidth=` `android:minHeight=` `android:maxWidth=` `android:maxHeight=` these does not work on MATCH_CONSTRAINT
+  * use attributes `layout_constraintWidth` & `layout_constraintHeight` as these would behave w.r to given constraints
+  * Also has modifiers such as `android:minWidth=` `android:minHeight=` `android:maxWidth=` `android:maxHeight=` these does not work on MATCH_CONSTRAINT
 * MATCH_CONSTRAINT - this is discouraged in constraint layout as it does not take constraints applied to widgets
 
+## Chains
+* Chain constraint of constraintlayout is used to create bi-directional connection between widgets
+* Has 3 styles 
+	* spread - all widgets are equally spread
+	* spreadinside - Will be spread inside endpoints but endpoints will stick the parent
+	* packed - All widgets will be placed close to each other without space but will consider margin
+	* attributes used are 
+		* app:layout_constraintHorizontal_chainStyle=[spread/spread inside/packed]
+		* app:layout_constraintVertical_chainStyle=[spread/spread inside/packed]
