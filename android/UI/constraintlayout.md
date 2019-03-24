@@ -25,3 +25,6 @@
 	* attributes used are 
 		* app:layout_constraintHorizontal_chainStyle=[spread/spread inside/packed]
 		* app:layout_constraintVertical_chainStyle=[spread/spread inside/packed]
+		
+##Videos
+* https://www.youtube.com/watch?v=P2XHNDHI4PQ - chains, circular constraints, dimension constraints, other usage
