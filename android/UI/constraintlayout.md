@@ -26,10 +26,10 @@
 		* app:layout_constraintHorizontal_chainStyle=[spread/spread inside/packed]
 		* app:layout_constraintVertical_chainStyle=[spread/spread inside/packed]
 		
-##Videos
+## Videos
 * https://www.youtube.com/watch?v=P2XHNDHI4PQ - chains, circular constraints, dimension constraints, other usage
 
-#Cons
+# Cons
 * Constraint layout has scroll issues with recyclerview that is if you place recyclerview inside constraintlayout,However if you can give 
   `android:layout_height = some dp` rather than `wrap_content` then it works fine, but this is not a best practice all the time.
 * if you have recyclerview details layout designed with  constraint layout UI would be fine by roboelectric test would not scroll to
