@@ -34,3 +34,4 @@
   `android:layout_height = some dp` rather than `wrap_content` then it works fine, but this is not a best practice all the time.
 * if you have recyclerview details layout designed with  constraint layout UI would be fine by roboelectric test would not scroll to
   last position so use espresso to test UI. 
+* Do not use `constraintTop_toTop` and `constraintBottom_toBottom` when you have vertical guidleine as it causes an error that you would be unaware of it. Only use these with horizontal guideline and for vertical guideline use `constraintLeft_to..` & `constraintRight_to..`
