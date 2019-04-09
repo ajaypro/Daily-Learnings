@@ -1,6 +1,6 @@
 # Memory Leaks
 
-[memory analysis android](http://android-developers.blogspot.in/2011/03/memory-analysis-for-android.html)
+[Memory analysis android](http://android-developers.blogspot.in/2011/03/memory-analysis-for-android.html)
 
     * Static Activity - Avoid declaring static activity since it will be loaded till the app is closed, 
     though the activity life cycle is complete. 
@@ -18,4 +18,8 @@
     * Sensor Manager - For all sensor events their respective services are to be registered a 
     listener to activity so that the event occurrence can be notified, sometimes the developer 
     forgets to unregister the listener or service from activity before its lifecycle ends 
-    becomes non-eligible for garbage collection
+    becomes non-eligible for garbage collection.
+    * Due to strong reference of static variables, holding context, object having larger
+    lifecycle holding reference to object holding shorter lifecycle like Application 
+    holding reference of an actvitiy even if you call `onDestory` of activity its instance
+    is not destroyed as Application class is holding its reference. 
