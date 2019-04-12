@@ -1,0 +1,3 @@
+* We can have fragment viewmodel defined with a data binding variable in mainactivity xml, and we can use this for show/hide of views or
+buttons `onClick()` on the action bar that will be initialized in main activity and you wanted these views to be visible in a particular
+fragment or actvitiy use the respective viewmodel defined in the xml.
