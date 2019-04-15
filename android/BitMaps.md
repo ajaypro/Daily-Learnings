@@ -1,6 +1,7 @@
-## Using glide for loading and cachine bitmaps 
+## Using glide for loading and cache in bitmaps 
+### General tips
+* You need to change the url of the image if the image is changed 
 ### Solving slow loading and OOM issues 
-
 * OOM - glides down samples the images downloaded from server to that which is required to load in android view. This is decoding the image
 which reduces the size without altering the quality of the image that will be rendered. By this technique it solves the OOM when loading
 image or bitmaps. 
@@ -14,3 +15,7 @@ image or bitmaps.
    * Glide initially looks into memory cache if image is not found it looks into disk cache( file system) and finally makes a n/w call
    and keeps a copy in disk cache and memory cache so that it displays it quicker in the rendered view, thus avoiding slow rendering of 
    images into the view. 
+   * Memory Cache stores the images interanally with its respectice url as a key and image as its value. 
+   * When user moves from FragmentA to Fragment B and fragmentA is destroyed when the user returns to fragmentB then it uses memory cache 
+   to get the image, in case if the application is killed and when user reopens the app again then its uses disk cache or makes a n/w call
+   based on image availability, as the memory cache will be erased. 
