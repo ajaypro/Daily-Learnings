@@ -1,4 +1,4 @@
-##Using glide for loading and cachine bitmaps 
+## Using glide for loading and cachine bitmaps 
 ### Solving slow loading and OOM issues 
 
 * OOM - glides down samples the images downloaded from server to that which is required to load in android view. This is decoding the image
