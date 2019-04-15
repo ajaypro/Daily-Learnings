@@ -1,4 +1,4 @@
-## Using glide for loading and cache in bitmaps 
+## Using glide for loading and caching bitmaps 
 ### General tips
 * You need to change the url of the image if the image is changed 
 ### Solving slow loading and OOM issues 
@@ -19,3 +19,16 @@ image or bitmaps.
    * When user moves from FragmentA to Fragment B and fragmentA is destroyed when the user returns to fragmentB then it uses memory cache 
    to get the image, in case if the application is killed and when user reopens the app again then its uses disk cache or makes a n/w call
    based on image availability, as the memory cache will be erased. 
+   
+   #### Bitmap Pool
+   * Android view should have 60 FPS so that there is no lag, if FPS is < 40 there would be huge lag that users face, this could be due 
+   to various reasons such as layout rendering, n/w calls, delay in response and many other one main reason would be due to frequent
+   garbage collection.
+   * Frequent GC happens when objects are free to be destroyed. Example when scrolling through recyclerview maybe the top 5 items are
+   ready for GC as user has scrolled down, to avoid this we can put these items in List so that its still be referenced by recyclerview to
+   be shown therefore GC will not occur frequently or you can leverage BITMAP Pool if its for images or OBJECT pool in case its objects.
+   * We need to reuse the memory of existing bitmapview again when a new bitmap is been loaded, this can be done with glide that provides
+   option having the bitmap object created with inBitmap after decoding so that we can always load the new image into existing bitmapobject
+   that is already created. Since now this holds the reference it won't be GC'ed and we need to ensure that the decoded new image is = or < 
+   size of previous image if not a new bitmap object would be created. However this only reduces flickering or lag drastically but not 
+   100%, further we would go about image optimization, compression algos etc...
