@@ -32,3 +32,6 @@ image or bitmaps.
    that is already created. Since now this holds the reference it won't be GC'ed and we need to ensure that the decoded new image is = or < 
    size of previous image if not a new bitmap object would be created. However this only reduces flickering or lag drastically but not 
    100%, further we would go about image optimization, compression algos etc...
+   
+   [Managing bitmap Memory](https://developer.android.com/topic/performance/graphics/manage-memory)
+   [Caching Bitmaps](https://developer.android.com/topic/performance/graphics/cache-bitmap.html)
