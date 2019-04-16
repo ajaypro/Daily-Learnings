@@ -33,5 +33,6 @@ image or bitmaps.
    size of previous image if not a new bitmap object would be created. However this only reduces flickering or lag drastically but not 
    100%, further we would go about image optimization, compression algos etc...
    
-   [Managing bitmap Memory](https://developer.android.com/topic/performance/graphics/manage-memory)
-   [Caching Bitmaps](https://developer.android.com/topic/performance/graphics/cache-bitmap.html)
+   * [Managing bitmap Memory](https://developer.android.com/topic/performance/graphics/manage-memory)
+   * [Caching Bitmaps](https://developer.android.com/topic/performance/graphics/cache-bitmap.html)
+   * [basic code on how to use glide] (https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library#setup)
