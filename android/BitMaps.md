@@ -35,4 +35,5 @@ image or bitmaps.
    
    * [Managing bitmap Memory](https://developer.android.com/topic/performance/graphics/manage-memory)
    * [Caching Bitmaps](https://developer.android.com/topic/performance/graphics/cache-bitmap.html)
-   * [basic code on how to use glide] (https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library#setup)
+   * [Loading large bitmpas efficiently](https://developer.android.com/topic/performance/graphics/load-bitmap)
+   * [basic code on how to use glide](https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library#setup)
