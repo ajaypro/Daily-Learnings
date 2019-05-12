@@ -1,16 +1,22 @@
 # Big O notation techniques
-* [explanation of Big O](https://medium.com/karuna-sehgal/a-simplified-explanation-of-the-big-o-notation-82523585e835)
 
-1 ## Different steps get added
+* [Explanation of Big O](https://medium.com/karuna-sehgal/a-simplified-explanation-of-the-big-o-notation-82523585e835)
+* [Big O](https://medium.com/@bretcameron/ace-your-coding-interview-by-understanding-big-o-notation-and-write-faster-code-6b60bd498040)
+
+
+## Different steps get added
 
 `fun add(): Int {
+
    val sum 1 = a + b O(sum1)
+   
    val sum 2 = c+ d O(sum2)
+   
    return sum1+sum2`
    
    runtime O(sum1 + sum2)
  
-2 ## drop constants
+ ## drop constants
 
 `fun minMax(array:Array){
    var min, max = null
@@ -34,7 +40,7 @@
  Both operations are same therefore is ok to write O(N), instead of O(2N)
  dropping constants
  
- 3 ## Different inputs => different variables
+ ## Different inputs => different variables
  
  `int intersectionSize(array: Array) {
   var count = 0 
@@ -49,7 +55,7 @@
 runtime will be O (a * b) not O (n^2) : as these are two different variables and each variable runtime 
 to be taken into account which results in O (a * b) 
 
-4 ## drop non-dominate terms
+## drop non-dominate terms
 
 `fun something(array: Array) {
  forEach(e in array)
