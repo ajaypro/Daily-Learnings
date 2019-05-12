@@ -1,4 +1,5 @@
 # Big O notation techniques
+* [explanation of Big O](https://medium.com/karuna-sehgal/a-simplified-explanation-of-the-big-o-notation-82523585e835)
 
 1 ## Different steps get added
 
