@@ -1,30 +1,28 @@
 # Big O notation techniques
 
 1 ## Different steps get added
+
 `fun add(): Int {
    val sum 1 = a + b O(sum1)
    val sum 2 = c+ d O(sum2)
-   return sum1+sum2 `
+   return sum1+sum2`
    
    runtime O(sum1 + sum2)
  
 2 ## drop constants
+
 `fun minMax(array:Array){
-   
    var min, max = null
-   
    forEach(e in array)
     min = MIN(e, array)
    forEach(e in array)
     max = MAX(e, array)
-	}
-	`
+	}`
+	
   runtime O(2N)
   
   `fun minMax(array:Array){
-	
 	var min, max = null 
-	
 	forEach(e in array)
 	 min = MIN(e, array)
     max = MAX(e, array)
@@ -36,6 +34,7 @@
  dropping constants
  
  3 ## Different inputs => different variables
+ 
  `int intersectionSize(array: Array) {
   var count = 0 
   for a in array {
@@ -53,8 +52,7 @@ to be taken into account which results in O (a * b)
 
 `fun something(array: Array) {
  forEach(e in array)
-    min = MIN(e, array)
-	
+    min = MIN(e, array)	
 	forEach e in array {
 	  forEach f in array {
 	   print a, b 
