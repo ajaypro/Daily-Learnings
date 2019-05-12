@@ -7,11 +7,8 @@
 ## Different steps get added
 
 `fun add(): Int {
-
    val sum 1 = a + b O(sum1)
-   
    val sum 2 = c+ d O(sum2)
-   
    return sum1+sum2`
    
    runtime O(sum1 + sum2)
