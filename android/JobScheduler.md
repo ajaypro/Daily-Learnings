@@ -26,3 +26,4 @@ jobscheduler.schedule(new JobInfo.Builder (LOAD_ARTWORK_JOB_ID,
 
 * [https://medium.com/google-developers/scheduling-jobs-like-a-pro-with-jobscheduler-286ef8510129]
 * (app to muzei)[https://github.com/romannurik/muzei]
+* [https://android.jlelse.eu/schedule-tasks-and-jobs-intelligently-in-android-e0b0d9201777]
