@@ -10,6 +10,10 @@
 
 ### Apps
 
+### AWS app samples
+
+* https://github.com/awslabs/aws-sdk-android-samples/tree/master/AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp
+
 #### kotlin mvvm retrofit2 rxjava projects follow them 
 
 * https://medium.com/@cdmunoz/offline-first-android-app-with-mvvm-dagger2-rxjava-livedata-and-room-25de4e1ada14
