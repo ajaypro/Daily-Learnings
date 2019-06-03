@@ -84,8 +84,8 @@ suspend fun <T>NetworkCall<T>.await(): T {
 		 val result = network.fetchNewStatus().await()
 		 } catch(error: NetworkException){
 		   }
-		 }
-		 ```
+  }
+  ```
 
 
 * Replaced code of `getrefreshStatus()` after performing insert into db
@@ -143,8 +143,8 @@ fun refreshStatus() {
             }
 
         }
-    }
-    ```
+}
+```
 
 * Uncaught exceptions in a coroutine scope are similar to uncaught exceptions in non-coroutine code. By default, they'll cancel the job that was passed 
 to the scope and pass the exception to the uncaughtExceptionHandler
