@@ -3,7 +3,8 @@
 
 * coroutines are defined in their own scopes and unlike thread they do not block
 * they makr use of suspend functions to perform heavy tasks which are defined outside coroutines but called in their scope.
-   ```suspend fun callDb(){
+   ```
+   suspend fun callDb(){
    ....
    }
    ```
@@ -13,12 +14,12 @@
 * Due to sequential operation of coroutines chaining function are easy, rather than going for multiple callbacks. Such as one function making 
  a network request another updating the ui 
  
-```@WorkerThread
+```
+@WorkerThread
 suspend fun makeNetworkRequest() {
     // fetch and updateUI are suspend functions
     val fetch = fetch()
-    val updateUI = updateUI(Dispatchers.main)
-    
+    val updateUI = updateUI(Dispatchers.main)   
 }
 
 suspend function fetch(): Fetch{...}
@@ -29,7 +30,8 @@ suspend function updateUI(): updateUI {...}
 
 * Consider this example code 
 
-  ```fun getrefreshStatus(/* ... */) {
+  ```
+  fun getrefreshStatus(/* ... */) {
    val result = network.fetchNewStatus()
     result.addOnResultListener { result ->
        // callback called when network request completes or errors
@@ -59,7 +61,8 @@ which returns result of this callback using `resume` and `resumeWithException`
 
 Code sample 
 
-```suspend fun <T>NetworkCall<T>.await(): T {
+```
+suspend fun <T>NetworkCall<T>.await(): T {
 
     return suspendCoroutine {continuation ->
         addOnResultListener { value ->
@@ -74,7 +77,8 @@ Code sample
 ```
 
 * Calling the suspend function await() in suspend function `getrefreshStatus()`
-   ```suspend  fun getrefreshStatus() {
+   ```
+   suspend  fun getrefreshStatus() {
 
         try {
 		 val result = network.fetchNewStatus().await()
@@ -86,7 +90,8 @@ Code sample
 
 * Replaced code of `getrefreshStatus()` after performing insert into db
 
-```suspend fun getrefreshStatus() {
+```
+suspend fun getrefreshStatus() {
    withContext(Dispatchers.IO) {
        try {
            val result = network.fetchNewStatus().await()
@@ -105,7 +110,8 @@ running heavy operations and once it completes the execution coroutine switches 
 * Below is the calling function existing code `refreshStatus` which passes a callback function to getrefreshStatus to display result in UI, this blocks 
 the current thread till the callback comes with results  which we will be replacing it with coroutine scope that does not block
 
-```fun refreshStatus() {
+```
+fun refreshStatus() {
    // pass a state listener as a lambda to refreshTitle
    repository.getRefreshStatus { state ->
        when (state) {
@@ -122,7 +128,8 @@ the current thread till the callback comes with results  which we will be replac
 
 * Replaced code after implementing co-routine scope, as we leverage `viewModelScope` offered by KTX, this takes the pain of clearing the `viewModelScope`
 
-```fun refreshStatus() {
+```
+fun refreshStatus() {
         // pass a state listener as a lambda to refreshTitle
 
         viewModelScope.launch {
