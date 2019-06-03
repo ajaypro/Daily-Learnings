@@ -5,7 +5,8 @@
 * they makr use of suspend functions to perform heavy tasks which are defined outside coroutines but called in their scope.
    ```suspend fun callDb(){
    ....
-   }```
+   }
+   ```
 * suspend function does not block the thread, it suspends execution until result is ready and then resumes
 * They perform sequential operations when compared to callbacks which relies on result and trigger the next operation 
    of callback 
@@ -21,11 +22,13 @@ suspend fun makeNetworkRequest() {
 }
 
 suspend function fetch(): Fetch{...}
-suspend function updateUI(): updateUI {...}```
+suspend function updateUI(): updateUI {...}
+```
 
 * Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
 
 * Consider this example code 
+
   ```fun getrefreshStatus(/* ... */) {
    val result = network.fetchNewStatus()
     result.addOnResultListener { result ->
@@ -39,7 +42,8 @@ suspend function updateUI(): updateUI {...}```
            }
        }
    }
-   }```
+   }
+   ```
 * Now `fetchNewStatus()` will be long running task and get the result which exposes a callback listener which saves data in db based on result's success
 or error
 * Now we need to rewrite `fetchNewStatus`  as a suspend function so that `getrefreshStatus()`  can written as coroutine
@@ -66,7 +70,8 @@ Code sample
         }
 
     }
-}```
+}
+```
 
 * Calling the suspend function await() in suspend function `getrefreshStatus()`
    ```suspend  fun getrefreshStatus() {
@@ -75,7 +80,8 @@ Code sample
 		 val result = network.fetchNewStatus().await()
 		 } catch(error: NetworkException){
 		   }
-		 }```
+		 }
+		 ```
 
 
 * Replaced code of `getrefreshStatus()` after performing insert into db
@@ -89,7 +95,8 @@ Code sample
            throw StatusRefreshError(error)
        }
    }
-}```
+}
+```
 
 * In the above code we make a call to suspend function `fetchNewStatus` to get result since the await function returns the result for us we 
 can use them in inserting into db which is run in separate thread due to the code `withContext(Dispatchers.IO)` Dispatchers.IO used for 
@@ -110,7 +117,8 @@ the current thread till the callback comes with results  which we will be replac
            }
        }
    }
-}```
+}
+```
 
 * Replaced code after implementing co-routine scope, as we leverage `viewModelScope` offered by KTX, this takes the pain of clearing the `viewModelScope`
 
@@ -128,7 +136,8 @@ the current thread till the callback comes with results  which we will be replac
             }
 
         }
-    }```
+    }
+    ```
 
 * Uncaught exceptions in a coroutine scope are similar to uncaught exceptions in non-coroutine code. By default, they'll cancel the job that was passed 
 to the scope and pass the exception to the uncaughtExceptionHandler
