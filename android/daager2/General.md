@@ -1,3 +1,14 @@
+## reflection 
+
+* can access methods and variables of class at runtime 
+* since its creates at runtime difficult to debug stacktrace based on configuration which happens at runtime crash
+* Annotation processing is same as reflection but does it at build time was used in dagger1 for creating instance alone but still having 
+  runtime crash  
+  
+## Inversion of control (IOC)
+ 
+ * When classes need dependencies, create the instance and provide to required classes known as IOC
+ * providing dependency from outside makes it configurable and easy to make change in only on dependency
 * component 
     every component should have a scope such as @singleton @activityscope
 	searches for module's which provides the instances 
