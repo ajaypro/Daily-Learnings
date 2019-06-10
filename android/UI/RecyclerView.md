@@ -9,6 +9,10 @@
 * [Improve performance](https://medium.com/mindorks/diffutils-improving-performance-of-recyclerview-102b254a9e4a)
 * [MultiitemTypes](https://android.jlelse.eu/a-recyclerview-with-multiple-item-types-dfba3979050) - Using different layouts to load 
  into recyclerview with single adapter
+* DiffUtil
+  * [Nice blog](https://antonioleiva.com/recyclerview-diffutil-kotlin/)
+  * [https://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView]
+  * [https://www.android4dev.com/how-to-create-recyclerview-with-multiple-view-types/]
  
  # Performance Improvement
 
