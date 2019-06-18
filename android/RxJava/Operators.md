@@ -8,8 +8,12 @@
   * DistinctUntilChanged - will only downstream when there are distinct words typed 
     e.g if im typing `ducati` and delete `i` from `ducati` then the operator will not downstream it rather it 
     will wait for any new character to be typed. 
+    
+## Time vs Delay vs Interval
+
+* [Time vs Delay vs Interval](https://blog.mindorks.com/understanding-rxjava-timer-delay-and-interval-operators)
 
 ## Map vs Flatmap
 
-* (Very nice explanation with examples)[https://stackoverflow.com/questions/22847105/when-do-you-use-map-vs-flatmap-in-rxjava]
-* (blog)[https://medium.com/mindorks/rxjava-operator-map-vs-flatmap-427c09678784]
+* [Very nice explanation with examples](https://stackoverflow.com/questions/22847105/when-do-you-use-map-vs-flatmap-in-rxjava)
+* [blog](https://medium.com/mindorks/rxjava-operator-map-vs-flatmap-427c09678784)
