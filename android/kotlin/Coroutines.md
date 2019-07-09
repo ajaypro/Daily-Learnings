@@ -148,6 +148,14 @@ fun refreshStatus() {
 
 * Uncaught exceptions in a coroutine scope are similar to uncaught exceptions in non-coroutine code. By default, they'll cancel the job that was passed 
 to the scope and pass the exception to the uncaughtExceptionHandler
+
+## Blogs
+
+* (coroutines over Rxjava) [https://proandroiddev.com/forget-rxjava-kotlin-coroutines-are-all-you-need-part-1-2-4f62ecc4f99b]
+* (comparision)[https://medium.com/capital-one-tech/coroutines-and-rxjava-an-asynchronicity-comparison-part-2-cancelling-execution-199485cdf068]
+* (coroutines over Rxjava - 2)[https://proandroiddev.com/forget-rxjava-kotlin-coroutines-are-all-you-need-d4dbdb509708]
+
+
 	
 
 ## About Cancellation 
