@@ -28,6 +28,8 @@
    * In recyclerview or listview when the user is scrolling up or down glide downloads only images for the imageview that are visible for user
       the out of views are been GC so due to this frame rate drops and UI unresponsiveness happens. 
    * To solve this glide has Bitmap pool which will fake the JVM not to GC the free objects which reside inside this Bitmap pool. 
-   * Now all the images that are not visible in the recyclerview or listview are not GCed but present in Bitmap but this increases the object size 
-     that would lead to OOM again therefore we give a size to bitmap pool e.g 10 mb and we use `inBitmap` which we resuse the memory of the image 
-     to load new image 	 
+   * Now all the images that are not visible in the recyclerview or listview are not GCed but present in Bitmap but this increases the      object size that would lead to OOM again therefore we give a size to bitmap pool e.g 10 mb and we use `inBitmap` which we resuse the memory of the image to load new image 	
+   
+ ### Blogs 
+ 
+ * [Glide from basic to advance topic with code in github](https://medium.com/@elye.project/glide-image-loader-the-basic-798db220bb44)
