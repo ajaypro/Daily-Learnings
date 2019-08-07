@@ -8,3 +8,8 @@
   As BehaviorSubject always emits the latest element, you can’t create one without giving a default initial value. 
   BehaviorSubject is helpful for depicting "values over time". For example, an event stream of birthdays is a Subject, 
   but the stream of a person's age would be a BehaviorSubject.
+  
+### PublishSubject vs PublishProcessor
+
+* The main difference is their base class, therefore the way that these two react to onNext event is different.
+* PublishProcessor is subclassed from Flowables so you can use a BackPressure Strategy when you make use of them. PublishSubject's superclass is Observable so at very least there is no BackPressure Strategy
