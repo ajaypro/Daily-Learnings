@@ -3,6 +3,7 @@
 * [About Subjects](https://tech.instacart.com/how-to-think-about-subjects-in-rxjava-part-1-ca509b981020)
 * [ - State propogation with subjects](https://proandroiddev.com/state-propagation-in-android-with-rxjava-subjects-81db49a0dd8e)
 * [ - About Publish processor](https://medium.com/@ar.xa.vasquez/how-to-rxjava2-series-intro-and-publishprocessor-79c3fea17921)
+* [ - hot observables with test cases](https://github.com/politrons/reactive/blob/master/src/test/java/rx/observables/connectable/HotObservable.java)
 
 
 ### Behaviour vs Publish
