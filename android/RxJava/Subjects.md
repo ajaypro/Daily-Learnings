@@ -1,3 +1,10 @@
+### Blogs
+
+* [About Subjects](https://tech.instacart.com/how-to-think-about-subjects-in-rxjava-part-1-ca509b981020)
+* [ - State propogation with subjects](https://proandroiddev.com/state-propagation-in-android-with-rxjava-subjects-81db49a0dd8e)
+* [ - About Publish processor](https://medium.com/@ar.xa.vasquez/how-to-rxjava2-series-intro-and-publishprocessor-79c3fea17921)
+
+
 ### Behaviour vs Publish
 
 * Behaviour remembers the last emitted item, but puslish starts with empty and starts emitting
