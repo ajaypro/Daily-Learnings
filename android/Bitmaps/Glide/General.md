@@ -20,6 +20,8 @@
    * This happens when image is been loaded into the imageview. 
    * Glides first fetches the image from memory and loads if its not there then it looks into disk, if its not there then it downloads 
       from n/w and puts them in disk and memory, by doing slow loading is avoided in glide. 
+   * When it fetches image from server it does place it in disk cache and does the transformations of converting the image of 1000*1000
+    to 200 * 200 as per `imageView` size and then put them in cache for quick retreival  
    
  ### UI unresponsiveness
 
