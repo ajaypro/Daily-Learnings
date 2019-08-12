@@ -1,3 +1,7 @@
+### Info
+* Glides uses java heap to store the images, whereas Bitmap / Media resources memory allocation comes from Native memory, but Bitmap cache memory is counted from java heap memory per app, which is why we receive OOM for larger bitmaps. 
+* **CHECK** - start the application and check the memory dump after some usage of the app using glide. It clearly shows that it keeps in Java heap memory
+
 
 ### Problems if not using image library 
  
