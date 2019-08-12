@@ -6,6 +6,7 @@
   and if your unsure about the task like network call, file move or copy, db operaion use io schedulers
   * RxAndroid extends RxJava to provide main thread schedulers, loopers, handlers to Rxjava as it is a library thats how we get 
    `AndroidSchedulers.mainThread()`
+  * Every library has rxjava version which is to be leveraged to work easily.
    
 ## Blogs
 
