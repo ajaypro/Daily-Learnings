@@ -8,15 +8,79 @@
 ## Inversion of control (IOC)
  
  * When classes need dependencies, create the instance and provide to required classes known as IOC
- * providing dependency from outside makes it configurable and easy to make change in only on dependency
-* component 
-    every component should have a scope such as @singleton @activityscope
-	searches for module's which provides the instances 
-	anything that the application component holds should be singleton
-	to access methods from application component you need to create methods in the component, this allows the share the component for dependencies
+ * providing dependency from outside makes it configurable and easy to make change in only on dependencycomponent
+*  every component should have a scope such as `@singleton` `@activityscope` searches for module's which provides the instances 
+	anything that the application component holds should be singleton to access methods from application component you need to    create methods in the component, this allows the share the component for dependencies.
 	
- * When we use @Inject for any class dagger2 first checks for its constructor where we have provided @inject if yes then we don't have to 
-   use @provides annotation in the activity module like this 
+## Constructor Injection
+
+* **Module** class will provide the methods through which the dependency will be provided to required classes
+* **Component** will take modules that it will make use to build dagger component, Marked with singleton as we are providing networkservice and databaseservice or any other classes as a singleton only. Also application component will only take singleton scope
+	* Component will have a method typically `inject()` which will take the class in which it will provide the dependency.
+	* Will take modules array to build dependencycompoenent for different modules. 
+* **Scope** - Every component will have a scope defined which will contain all modules to be used within that scope. 
+	
+## Providing dependency from another component
+
+* we have to provide DatabaseService and NetworkService to mainviewmodel, since we have activity module in which we have provides()
+ for mainviewmodel, if we provide a new instance of DatabaseService and NetworkService like below. 
+ 
+ ``` 
+ @Provides
+    MainViewModel providesMainViewModel(DatabaseService databaseService,NetworkService networkService){
+        return  new MainViewModel(databaseService, networkService);
+    } 
+ ```
+* If we do this dagger will look for either the provides() for DatabaseService and NetworkService in above case its not present so
+  it will throw error stating we need to provide one or use `@Inject`on constructor. 
+* Since we don't want to create another instance of it and we can have a shared dependency from application component like 
+  defining our `ActivityComponent` like below. 
+  
+  ```
+   @Component(dependencies = {ApplicationComponent.class} ,modules = {ActivityModule.class})
+   public interface ActivityComponent {
+
+    void inject(MainActivity mainActivity);
+  }
+  ```
+ * We get a error after building asking for `@Inject` or `@Provides` over databaseservice and networkservice, which means that we have 
+   anything that we are trying to access from applicationcomponent we need to create a method for it. like below. 
+   
+   ```
+     @Singleton
+    @Component(modules = {ApplicationModule.class})
+    public interface ApplicationComponent {
+
+    void inject(MyApplication application);
+
+    NetworkService getNetworkService();
+
+    DatabaseService getDatabaseService();
+    }
+   ```
+ * By doing this we will be able to access the methods from application component across other components like in our case activity
+   component.
+ * Now we have to set the application component that we have build in activity component otherwise the application would crash asking 
+   us to set it like below. 
+   
+   ```
+     public ApplicationComponent applicationComponent;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
+
+               applicationComponent.inject(this);
+   ```
+   
+ * We also have to include this the mainactivity while building activitycomponent as it will take the required dependency based on the 
+   application component that it has build. 
+	
+ * When we use `@Inject` for any class dagger2 first checks for its constructor where we have provided `@inject` if yes then we don't have to use `@provides` annotation in the activity module like this 
    
    ```
    @Provides
@@ -25,41 +89,78 @@
         return new MainViewModel(databaseService, networkService);
     }
 	```
+## Injecting through constructor @Inject instead of @Provides 
+
+* Replacing provides() of mainviewmodel with constructor @inject, as dagger will look for @inject first if not found then goes for 
+  @provides
+  
+  ```
+   @Inject 
+    public MainViewModel(DatabaseService databaseService, NetworkService networkService) {
+        this.databaseService = databaseService;
+        this.networkService = networkService;
+    } 
+  ```
+## Using qualifier to identify the datatypes instance of same type required for different methods
+
+* We create two qualifier one for db and network and mention them at particular string to be identified
+
  * Qualifier
    * Suppose if we are providing instances of same  method and if it has same type in dagger to we use qualifier to separate them. 
     ```
 	
-	Appmodule.class
-	
-	@Provides
- 
-    String provideDatabaseName() {
-        return "dummy_db";
-    }
-
+	@DatabaseInfo
     @Provides
-   
-    String provideApiKey() {
-        return "SOME_API_KEY";
+    String provideDbname(){
+        return "abc";
+    }
+    @Provides
+    Integer provideDbVersion(){
+        return 1;
+    }
+    @NetworkInfo
+    @Provides
+    String provideApiKey(){
+        return "xyz";
     }
 	
-	db.class
-	
-	private Context context;
-    private String databaseName;
-    private int version;
+	```
+* Qualifier classes 
 
+  ```
+  
+  @Qualifier
+  @Retention(RetentionPolicy.SOURCE) // will be removed when compiling
+  public @interface DatabaseInfo {
+  }
+   
+  @Qualifier
+  @Retention(RetentionPolicy.SOURCE) // will be removed when compiling
+  public @interface NetworkInfo {
+  }
+
+  ```
+  
+* Using qualifier in DatabaseService and NetworkService
+
+```
+   
     @Inject
-    public DatabaseService(@ApplicationContext Context context,
-                           String databaseName,
-                           Integer version) {
+    public DatabaseService(Context context, @DatabaseInfo String databaseName, int version) {
         // do the initialisation here
         this.context = context;
         this.databaseName = databaseName;
         this.version = version;
     }
-	
-	```
+    
+    @Inject
+    public NetworkService(Context context, @NetworkInfo String apiKey) {
+        // do the initialisation here
+        this.context = context;
+        this.apiKey = apiKey;
+    }
+
+```
    * Above we have two String types which are passed to db class as constructor arguments, if you try to build it it would throw error saying that 
    "String is bound multiple times", we add qualifiers to avoid this issue. 
    * We can create qualifiers with @Qualifier such as 
