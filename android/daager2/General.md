@@ -198,3 +198,7 @@
     }
    
    ```
+   
+ ## Subcomponent 
+ 
+ [Stackoverflow post](https://stackoverflow.com/questions/29587130/dagger-2-subcomponents-vs-component-dependencies)
