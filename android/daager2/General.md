@@ -202,3 +202,8 @@
  ## Subcomponent 
  
  [Stackoverflow post](https://stackoverflow.com/questions/29587130/dagger-2-subcomponents-vs-component-dependencies)
+ 
+ ## Blogs
+ 
+ [https://proandroiddev.com/dagger-2-part-ii-custom-scopes-component-dependencies-subcomponents-697c1fa1cfc]
+ [http://frogermcs.github.io/dependency-injection-with-dagger-2-custom-scopes/]
