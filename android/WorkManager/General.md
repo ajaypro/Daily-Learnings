@@ -29,4 +29,6 @@
         .enqueue() // Enqueues the WorkContinuation which is a chain of work 
         
    ```
+   * **WorkInfo** contains the status of workrequest you can use `LiveData` that holds `WorkInfo` object to observe the status of each 
+     work request 
    
