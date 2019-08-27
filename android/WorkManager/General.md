@@ -31,4 +31,8 @@
    ```
    * **WorkInfo** contains the status of workrequest you can use `LiveData` that holds `WorkInfo` object to observe the status of each 
      work request 
+     
+     ### Blogs
+     
+     * [Basics of WorkManager](https://medium.com/mindorks/work-manager-in-android-9cdb66c9a1df)
    
