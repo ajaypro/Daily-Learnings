@@ -36,5 +36,50 @@
  * While creating a room db we create a abstract class extending `RoomDatabase()` class and annotating class with `@Database`
   and give `entities, version` and `exportSchema = false` as we don't want room to export schema to our android file system.
   
+ * Room provides type convertors as it does not allow to store data types other than primitives, so adding Date of birth attribute 
+  to User table we will add `@TypeConvertor` so that room stores them in converted form 
+  Type convertor for Date datatype and  
+  ```
+  class Convertor {
+
+    @TypeConverter
+    fun fromTimestamp(value: Long) = value?.let { Date(it) }
+
+    @TypeConverter
+    fun fromDate(date: Date) = Date().time
+}
+  ```
+   we mention them in the databaseservice class
+   
+   ```
+   @Database(
+    entities = [ User::class,
+                 Address::class],
+    version = 1,
+    exportSchema = false)
+**@TypeConverters(Convertor::class)**
+abstract class DataBaseService: RoomDatabase() {
+
+    // abstract method dao to implement and access the query methods of db
+    abstract fun userDao(): UserDao
+
+    abstract fun addressDao(): AddressDao
+
+    fun dummyData() = "Dummy data"
+   ```
+ ## Migration 
+ 
+ * When we add a column to table or alter we have to write and include migrations in dagger2 application module (if your using dagger2)
+  We can only add or alter we cannot delete tables as it will be in production. 
+ * Added pincode column in address table so the below migration
+  
+  ``` 
+val MIGRATIONS1_2 = object: Migration(1,2){
+
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("ALTER TABLE addresses ADD COLUMN pincode INTEGER")
+    }
+}
+  ```
   
  
