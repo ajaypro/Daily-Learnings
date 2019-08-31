@@ -16,3 +16,11 @@
     You can visualize the navigation paths through your app
     Actions can contain additional associated attributes you can set, such as a transition animation, arguments values, and backstack behavior
     You can use the plugin safe args to navigate, which you'll see shortly
+    
+* The backstack for a deep link is determined using the navigation graph you pass in. If the explicit Activity you've chosen has a parent activity, those parent Activities are also included.
+
+The backstack is generated using the destinations specified with `app:startDestination` defined in `mobile_navigation.xml` which is the navigation graph. In this app we only have one activity and one level of navigation, so the backstack will take you to the home_dest destination.
+
+* Deep linking using Navigation component is much easier than old style of using `intent-filter` and associate a URL with activity
+  In the Navigation Graph mention your deep link using `<deepLink>` which has single element `app:uri` and in the manifest you 
+  mention `<nav-graph android:value="@navigation/mobile_navigation" />` which internally generates intent-filter.
