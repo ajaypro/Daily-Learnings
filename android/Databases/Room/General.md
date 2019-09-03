@@ -81,5 +81,7 @@ val MIGRATIONS1_2 = object: Migration(1,2){
     }
 }
   ```
+  * Roomdb will store boolean values as 1 and 0 so while creating table query should be 
+    e.g `isValid INTEGER NON NULL` here non-null will be true always as by default value of room is 0 which is false. 
   
  
