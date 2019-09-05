@@ -16,3 +16,7 @@ lateinit var heavyObject: Lazy<HeavyObject>
  * the idea is to check the value twice, first without locking it and if the field is not initialized a second check where 
  we lock the field and initialize it, without doublecheck the chances of accessing the variable is higher since we would be 
  locking the field every single time we try to access it.
+ 
+ ## Ref Links
+ 
+ * [Lazy in kotlin](https://proandroiddev.com/deep-dive-into-dagger-lazy-7a5860cca7cc)
