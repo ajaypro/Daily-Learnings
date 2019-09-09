@@ -35,4 +35,5 @@
      ### Blogs
      
      * [Basics of WorkManager](https://medium.com/mindorks/work-manager-in-android-9cdb66c9a1df)
+     * [Good location tracking example ](https://medium.com/google-developer-experts/services-the-life-with-without-and-worker-6933111d62a6)
    
