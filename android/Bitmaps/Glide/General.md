@@ -39,3 +39,6 @@
  ### Blogs 
  
  * [Glide from basic to advance topic with code in github](https://medium.com/@elye.project/glide-image-loader-the-basic-798db220bb44)
+ * [Invalidating single image in glide](https://bumptech.github.io/glide/doc/caching.html#cache-invalidation)
+ * [Tips using Glide](https://android.jlelse.eu/using-glide-few-tips-to-be-a-pro-60f41e29d30a)
+ 
