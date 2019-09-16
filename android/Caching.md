@@ -7,4 +7,5 @@
   
 ## Use Cases 
  * [https://medium.com/stuart-engineering/magic-with-kotlin-rxjava-and-the-repository-pattern-af751a451254]
+ * [Caching made simple kotlin](https://medium.com/@appmattus/caching-made-simple-on-android-d6e024e3726b)
 
