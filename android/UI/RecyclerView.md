@@ -5,6 +5,7 @@
 ### For complex recyclerviews 
 
 * [Basics of RV](https://medium.com/@nileshsingh/understanding-recyclerview-part-1-the-basics-a7bd07cfae93)
+  [Link2](https://developer.android.com/guide/topics/ui/layout/recyclerview)
 * [RV Optimizations](https://android.jlelse.eu/recyclerview-optimisations-a4b141dd433d)
 * [Better adapters](https://proandroiddev.com/writing-better-adapters-1b09758407d2)
 * [Improve performance](https://medium.com/mindorks/diffutils-improving-performance-of-recyclerview-102b254a9e4a)
@@ -32,3 +33,7 @@
     notifyItemRangeChanged
     notifyItemRangeInserted
     notifyItemRangeRemoved
+    
+ ## Repos
+ 
+ * [To practice](https://github.com/googlesamples/android-sunflower)
