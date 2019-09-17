@@ -4,6 +4,8 @@
   * [caching with room using behaviour subject](https://android.jlelse.eu/implementing-a-cache-for-room-with-behaviorsubject-898fb3331cb)
   * [caching with repo pattern](https://medium.com/corebuild-software/android-repository-pattern-using-rx-room-bac6c65d7385)
   * [Using Rxjava concat good example](https://blog.mindorks.com/implement-caching-in-android-using-rxjava-operators)
+  * [LRU](https://www.interviewcake.com/concept/java/lru-cache)
+    [link1](https://www.programcreek.com/2013/03/leetcode-lru-cache-java/)
   
 ## Use Cases 
  * [https://medium.com/stuart-engineering/magic-with-kotlin-rxjava-and-the-repository-pattern-af751a451254]
