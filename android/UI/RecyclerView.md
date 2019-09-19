@@ -15,6 +15,12 @@
   * [Nice blog](https://antonioleiva.com/recyclerview-diffutil-kotlin/)
   * [https://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView]
   * [https://www.android4dev.com/how-to-create-recyclerview-with-multiple-view-types/]
+
+## Blogs
+
+* [Expandable RecyclerView](https://android.jlelse.eu/get-expandable-recyclerview-in-a-simple-way-8946046b4573)
+* [delete, undo, swipe](https://medium.com/@zackcosborn/step-by-step-recyclerview-swipe-to-delete-and-undo-7bbae1fce27e)
+* [Generic Recyclerview for multiple lists](https://medium.com/hackernoon/recyclerview-plus-assign-kotlin-power-6f93ce980154)
  
  
  # Performance Improvement
