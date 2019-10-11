@@ -3,6 +3,8 @@
 of using these in class we can define them in the xml.
 * Separates ui and business logic
 * Internally does a null check as well
+* DataBinding has a negative impact on the build speed as it uses annotation processor under the hood.
+
 ## Types
 
 ### Static data binding
