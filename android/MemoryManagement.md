@@ -1,5 +1,6 @@
 ### General
 
+* For android the instances and references variables gets stored in registers unlike stack in java's JVM. 
 * When an object is created with new keyword its created in heap memory of RAM and its reference variables will hold the address of this 
    heap memory. 
    `Bus bus = new Bus`
