@@ -10,3 +10,10 @@
 * Using UUID is best solution as it is unique for a installation, using this we can identify a user even if he changes different devices. 
 
 [ref link:] (https://medium.com/@ssaurel/how-to-retrieve-an-unique-id-to-identify-android-devices-c40080e04fa4) 
+
+* When using dagger2 to invoke `injectDependencies()` inside `onCreate()` before `super.onCreate()` or any other initialization, to get pass creating views and get dependencies. 
+
+* Using !!(not-null assertion operator) `context!!.applicationContext` in fragment where we are trying to get `activityContext` in 
+  fragment if we don't get its ok to throw error during compile time(fail-fast) 
+  
+
