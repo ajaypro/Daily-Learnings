@@ -9,3 +9,4 @@
   * Read attrs in custom component class
   * Extend layout class to create a custom component class and override onDraw()
   * https://github.com/elye/demo_custom_component
+* [Creating Custom View] (https://medium.com/mindorks/how-to-create-custom-views-141dc0570e57)
