@@ -15,5 +15,11 @@
 
 * Using !!(not-null assertion operator) `context!!.applicationContext` in fragment where we are trying to get `activityContext` in 
   fragment if we don't get its ok to throw error during compile time(fail-fast) 
+
+## UI
+
+* To build custom `BottomNagivationView` we can use this [library](https://github.com/armcha/Space-Navigation-View) 
+
+   
   
 
