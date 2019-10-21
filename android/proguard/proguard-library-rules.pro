@@ -76,6 +76,10 @@
 -keepattributes Signature
 -keepattributes *Annotation*
 
+* when module1 and module2 are Dynamic Feature Modules with databinding enabled
+-keep class com.example.module1.DataBinderMapperImpl { *; } 
+-keep class com.example.module2.DataBinderMapperImpl { *; } 
+
 
 # Jackson
 #-dontwarn org.codehaus.jackson.**
