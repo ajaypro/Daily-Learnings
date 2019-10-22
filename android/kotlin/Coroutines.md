@@ -1,8 +1,9 @@
 
 ## Coroutines
 
-* coroutines are defined in their own scopes and unlike thread they do not block
-* they makr use of suspend functions to perform heavy tasks which are defined outside coroutines but called in their scope.
+* Coroutines are defined in their own scopes and unlike thread they do not block
+* Many coroutines can run in a single thread at once.
+* They make use of suspend functions to perform heavy tasks which are defined outside coroutines but called in their scope.
    ```
    suspend fun callDb(){
    ....
