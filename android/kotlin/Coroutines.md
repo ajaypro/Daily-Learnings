@@ -2,6 +2,7 @@
 ## Coroutines
 
 * Coroutines are defined in their own scopes and unlike thread they do not block
+* Coroutines have a default job for each scope defined.
 * Many coroutines can run in a single thread at once.
 * They make use of suspend functions to perform heavy tasks which are defined outside coroutines but called in their scope.
    ```
@@ -155,14 +156,44 @@ to the scope and pass the exception to the uncaughtExceptionHandler
 * (coroutines over Rxjava) [https://proandroiddev.com/forget-rxjava-kotlin-coroutines-are-all-you-need-part-1-2-4f62ecc4f99b]
 * (comparision)[https://medium.com/capital-one-tech/coroutines-and-rxjava-an-asynchronicity-comparison-part-2-cancelling-execution-199485cdf068]
 * (coroutines over Rxjava - 2)[https://proandroiddev.com/forget-rxjava-kotlin-coroutines-are-all-you-need-d4dbdb509708]
+## Job
 
+* Completable job has more features than `Job` like 
+   `job.complete()` just completes the job
+   `job.completeExecptionally()` completes job with execption to throw exceptions, error message.
+* `CompleteableJob` extends `Job` class
+* Job that can be completed manually by you (you have more control) e.g downloading a file and then cancelling it.
+* Can be used to launch coroutines in their own independent context. 
+* Ability to very easily cancel jobs and create new ones
+* If a job is cancelled we cannot reuse the job, rather we can recreate the job. 
 
-	
+## Using single job and cancelling
+
+* Launching coroutine IO with job helps us to deal only with that job alone, the coroutine will create and run the job within its own 
+  individual context. This will not cancel other jobs running in the same context
+```
+CoroutineScope(IO + job).launch{ 
+...
+}
+
+job.cancel // will cancel only this job alone, other jobs running in IO scope won't get cancelled
+```
+
+* In this scenario if we cancel the coroutine, all the jobs within the IO scope will be cancelled not in the above case
+```
+val scope = CoroutineScope(IO).launch{ 
+....
+}
+
+CoroutineScope(IO).launch{ 
+....
+}
+scope.cancel()
+```
 
 ## About Cancellation 
 
-* suspendCoroutine is a good choice when you don't need to support cancellation. Typically, however, cancellation is a concern and you can use 
- suspendCancellableCoroutine to propagate cancellation to libraries that support cancellation to a callback based API. 
+* suspendCoroutine is a good choice when you don't need to support cancellation. Typically, however, cancellation is a concern and you   can use suspendCancellableCoroutine to propagate cancellation to libraries that support cancellation to a callback based API. 
 
 * DOUBT: launch returns immediately work on it
  
