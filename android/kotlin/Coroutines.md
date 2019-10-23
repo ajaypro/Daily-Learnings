@@ -4,6 +4,19 @@
 * Coroutines are defined in their own scopes and unlike thread they do not block
 * Coroutines have a default job for each scope defined.
 * Many coroutines can run in a single thread at once.
+* Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
+* A scope controls the lifetime of coroutines through its job. When you cancel the job of a scope, it cancels all coroutines started in    that scope
+* you can use a scope to cancel all running coroutines, the co-routine of particular scope
+
+* A coroutine can switch dispatchers any time after it's started. 
+  e.g a coroutine can start on the main dispatcher then use another dispatcher to parse a large JSON result off the main thread.
+ `CoroutineScope(Dispatchers.Main + viewModelJob)`
+ 
+* A CoroutineScope can take a CoroutineContext as a parameter, above it takes `main` as threading policy and the job `viewModelJob`
+* Scopes created with the `CoroutineScope` constructor add an implicit job, which you can cancel using   `uiScope.coroutineContext.cancel()`
+
+* The library adds a `viewModelScope` as an extension function of the `ViewModel` class. This scope is bound to `Dispatchers.Main` and        will automatically be cancelled when the `ViewModel` is cleared.
+
 * They make use of suspend functions to perform heavy tasks which are defined outside coroutines but called in their scope.
    ```
    suspend fun callDb(){
@@ -196,4 +209,38 @@ scope.cancel()
 * suspendCoroutine is a good choice when you don't need to support cancellation. Typically, however, cancellation is a concern and you   can use suspendCancellableCoroutine to propagate cancellation to libraries that support cancellation to a callback based API. 
 
 * DOUBT: launch returns immediately work on it
+
+## Test Setup
+
+* `kotlinx-coroutines-test`provides many utilities to simplify testing coroutines on Android
+
+    Auto-advance of time for regular suspend functions
+    Explicitly control time for testing multiple coroutines
+    Eagerly execute the bodies of launch or async code blocks
+    Pause, manually advance, and restart the execution of coroutines in a test
+    Report uncaught exceptions as test failures
+
+* `InstantTaskExecutorRule` is a JUnit rule that configures LiveData to immediately post to the main thread while a test is run
+* `suspendCoroutine` that's used to convert callback-based APIs to suspend functions.
+* `suspendCoroutine` will give you a `continuation` object that you can use to resume the coroutine.
+* The continuation that suspendCoroutine provides has two functions: resume and resumeWithException. Calling either function will cause   suspendCoroutine to resume immediately.
+
+## Testing Co-routines
+
+* The test runner doesn't know anything about coroutines so we can't make this test a suspend function. We could launch a coroutine using a `CoroutineScope` like in a ViewModel, however tests need to run coroutines to completion before they return. Once a test function returns, the test is over. Coroutines started with `launch` are asynchronous code, which will complete at some point in the future. Therefore to test that asynchronous code, you need some way to tell the test to wait until your coroutine completes. Since launch is a non-blocking call, that means it returns right away and can continue to run a coroutine after the function returns, it can't be used in tests.
+
+* This test will always fail. The call to launch will return immediately and end the test case. The exception from `await()` may happen before or after the test ends, but the exception will not be thrown in the test call stack. It will instead be thrown into scope's uncaught exception handler.
+
+* Kotlin has the `runBlocking` function that blocks while it calls suspend functions. When runBlocking calls a suspend function, instead of suspending like normal it will block just like a function. You can think of it as a way to convert suspend functions into normal function calls.
+
+* Since runBlocking runs coroutines just like a normal function, it will also throw exceptions just like a normal function
+
+* The function runBlocking will always block the caller, just like a regular function call. The coroutine will run synchronously on the same thread. You should avoid runBlocking in your application code and prefer launch which returns immediately.
+
+* `runBlocking` should only be used from APIs that expect blocking calls like tests.
+
+## Working of `launch` and `runBlocking` 
+
+* A suspend lambda allows you to call suspend functions. That's how Kotlin implements the coroutine builders `launch` and `runBlocking`
+
  
