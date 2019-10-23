@@ -1,6 +1,9 @@
 
 ## Coroutines
 
+* [good blogs for basics quick understanding](https://blog.mindorks.com/mastering-kotlin-coroutines-in-android-step-by-step-guide)
+* [examples with depth](https://medium.com/androidiots/androidiots-podscast-7-unmasking-kotlin-coroutines-ce2711269d3b)
+
 * Coroutines are defined in their own scopes and unlike thread they do not block
 * Coroutines have a default job for each scope defined.
 * Many coroutines can run in a single thread at once.
