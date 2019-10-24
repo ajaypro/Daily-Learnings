@@ -14,5 +14,4 @@
 	   * You can send the data to main thread from any other thread in livedata using postValue
   * should register the observer of livedata onCreate() only 
   * it will be automatically removed once the lifecycleowner is finished
-  * LiveData can also be used for ui which does not have lifecycle methods use `LiveData.observeForever(Observer)` 
-  and we need to remove it manually by using LiveData.removeObserver(Observer)
+  * LiveData can also be used for ui which does not have lifecycle methods use `LiveData.observeForever(Observer)`  and we need to remove     it manually by using LiveData.removeObserver(Observer).
