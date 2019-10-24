@@ -209,9 +209,23 @@ scope.cancel()
 
 ## About Cancellation 
 
-* suspendCoroutine is a good choice when you don't need to support cancellation. Typically, however, cancellation is a concern and you   can use suspendCancellableCoroutine to propagate cancellation to libraries that support cancellation to a callback based API. 
+* `suspendCoroutine` is a good choice when you don't need to support cancellation. Typically, however, cancellation is a concern and you   can use `suspendCancellableCoroutine` to propagate cancellation to libraries that support cancellation to a callback based API. 
 
-* DOUBT: launch returns immediately work on it
+* Coroutines package has cancellable in their package, all suspending fucntions in `kotlinx.coroutines` are cancellable. So these functions will check if the coroutine are been cancelled if not they cancel it. 
+e.g 
+
+```
+suspend fun primeNumber(){
+  while(true){
+  //compute
+  delay(1000)
+  }
+  }
+```
+* If there aren't any cancellable functions then we can use `isActive` in coroutine to check is alive
+
+
+
 
 ## Test Setup
 
@@ -242,8 +256,41 @@ scope.cancel()
 
 * `runBlocking` should only be used from APIs that expect blocking calls like tests.
 
+## AndroidDevSummit
+
+### Livedata with coroutines and flow
+
+* To do something when activity or fragment starts we can use `lifecycleScope.launch` and `lifecycleScope.launchWhenResume` for `onResume()` this runs the `suspend block` only when the lifecycle state in started or greater(resume state), so if the activity goes to `onStop()` it stops execution and returns to resume when the activity resumes.
+
+* *LiveData-Coroutine-Builder*  - It is a coroutine block for livedata starts executing when livedata is observed and canceled by data not used anymore and inside that we can emit results 
+
+```
+class ViewModel{
+  val result = liveData{
+  emit(computation)
+  }
+  }
+```
+* *User selecting an item to fetch details* 
+
+```
+private val itemId = MutableLiveData<String>()
+val result = itemId.switchMap{
+ livedata{ emit(fetch(it))}
+ }
+
+```
+
+* we can also use scopes in livedata coroutine scope such as 
+
+`livedata(Dispatchers.IO){}`
+
 ## Working of `launch` and `runBlocking` 
 
 * A suspend lambda allows you to call suspend functions. That's how Kotlin implements the coroutine builders `launch` and `runBlocking`
+
+## NEED TO WORK 
+
+* DOUBT: launch returns immediately work on it
 
  
