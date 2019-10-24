@@ -83,5 +83,34 @@ val MIGRATIONS1_2 = object: Migration(1,2){
   ```
   * Roomdb will store boolean values as 1 and 0 so while creating table query should be 
     e.g `isValid INTEGER NON NULL` here non-null will be true always as by default value of room is 0 which is false. 
+    
+ ## Pre-packed db 
+
+* Either prefill room db with data from apk or download from cloud, to do this we use 
+
+```
+ Room.databaseBuilder(appContext, TestDatabase.class, "Sample.db")
+  .createFromFile(File("myPath"))
+  .build()
+```
+* room reads the downloaded file so need to set view permissions .
+
+* to pack in apk we need to place in assets folder and use below code 
+```
+ Room.databaseBuilder(appContext, TestDatabase.class, "Sample.db")
+  .createFromAsset(File("database/myapp.db"))
+  .build()
+```
+
+* @Relation annotation can be added to object as well
+  which tells the actuall relation between two entities 
+```
+data class PetAndOwner(
+  @Embedded val owner: Owner,
+  @Relation(
+    parentColumn = "ownerId",
+    entityColumn = "petOwnerId"),
+val pet: Pet)
+```
   
  
