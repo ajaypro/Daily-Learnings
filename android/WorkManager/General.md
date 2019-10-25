@@ -30,30 +30,31 @@
         .enqueue() // Enqueues the WorkContinuation which is a chain of work 
         
    ```
-   * *WorkInfo* contains the status of workrequest you can use `LiveData` that holds `WorkInfo` object to observe the status of each 
-     work request 
+   * **WorkInfo* 
+      * contains the status of workrequest you can use `LiveData` that holds `WorkInfo` object to observe the status of each 
+       work request 
    
-   * *How work request runs :* 
-    * Initially the requests are persisted in the workmanagerdb and all the status about the workRequest will be stored in here. 
-    * if in API23+ we send request to `jobScheduler`
-    * if in API22- and has Google play services we send request to `GcmNetworkManager` if not `alarmManager`
-    * Since the `jobscheduler`, `GcmNetworkManager` and `alarmManager` reside outside of app they will wake up the app when its not
+   * **How work request runs :*
+      * Initially the requests are persisted in the workmanagerdb and all the status about the workRequest will be stored in here. 
+      * if in API23+ we send request to `jobScheduler`
+      * if in API22- and has Google play services we send request to `GcmNetworkManager` if not `alarmManager`
+      * Since the `jobscheduler`, `GcmNetworkManager` and `alarmManager` reside outside of app they will wake up the app when its not
       running, while also keep track of constraints defined.
-    * `GreedyScheduler` is part of the app and will be made to run the request when the app is awake, this is much faster than all the
+      * `GreedyScheduler` is part of the app and will be made to run the request when the app is awake, this is much faster than all the
       above.
     
-   * *When work won't run*
-   * when constraint not met 
-   * in Doze mode, jobs can be delayed in doze mode to preserve battery
-   * Battery saver mode bg work won't run
-   * If any prerequsities are not fulfilled then parent job and its child jobs keeps failing
-   * Workermanager is limited by `ThreadPool` size so max jobs would be 2-4, beyond that it fails
-   * If app is doing too much work, jobs will fail to run.
-   * force stop will wipe out all jobs and alarms 
+   * **When work won't run*
+      * when constraint not met 
+      * in Doze mode, jobs can be delayed in doze mode to preserve battery
+      * Battery saver mode bg work won't run
+      * If any prerequsities are not fulfilled then parent job and its child jobs keeps failing
+      * Workermanager is limited by `ThreadPool` size so max jobs would be 2-4, beyond that it fails
+      * If app is doing too much work, jobs will fail to run.
+      * force stop will wipe out all jobs and alarms 
    
-   * *Work running often*
-   *  starting workmanager and enqueueing in onCreate(), instead use `.enqueueUniqueWorkRequest()` and KEEP the existing work which is
-      started
+   * **Work running often*
+      * starting workmanager and enqueueing in onCreate(), instead use `.enqueueUniqueWorkRequest()` and KEEP the existing work which is
+        started
       
    ## Initialization
    
@@ -68,9 +69,8 @@
    
    * We use TestListenableWorkerBuilder to create a worker class using which we test the actual worker class 
     
-     
-     ### Blogs
+   ### Blogs
      
      * [Basics of WorkManager](https://medium.com/mindorks/work-manager-in-android-9cdb66c9a1df)
-     * [Good location tracking example ](https://medium.com/google-developer-experts/services-the-life-with-without-and-worker-6933111d62a6)
+     * [Good location tracking example ](https://medium.com/google-developer-experts/services-the-life-with-without-and-worker-  6933111d62a6)
    
