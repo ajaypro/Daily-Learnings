@@ -42,3 +42,8 @@
  * [Invalidating single image in glide](https://bumptech.github.io/glide/doc/caching.html#cache-invalidation)
  * [Tips using Glide](https://android.jlelse.eu/using-glide-few-tips-to-be-a-pro-60f41e29d30a)
  
+ ### Sample workout
+ 
+ * [Showing image with glide](https://blog.mindorks.com/downloading-and-showing-image-with-glide-library-in-android)
+ * [Glide samples](https://bumptech.github.io/glide/ref/samples.html)
+ 
