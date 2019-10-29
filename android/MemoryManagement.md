@@ -15,4 +15,8 @@
    of same primitive variables it will only store copy of primitive variable and each thread will have a stack memory on its own.
 * When a thread makes methods calls one after other, after which if it does not have memory to call 4th method then its
    throws stackoverflow error and this is faster then heap memory as there is no GC call.
+   
+ ### Blogs
+ 
+ * [Understanding memory usage](https://blog.mindorks.com/understanding-memory-usage-in-android)
  
