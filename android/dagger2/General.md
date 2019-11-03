@@ -19,6 +19,21 @@
 	* Component will have a method typically `inject()` which will take the class in which it will provide the dependency.
 	* Will take modules array to build dependencycompoenent for different modules. 
 * **Scope** - Every component will have a scope defined which will contain all modules to be used within that scope. 
+* **Binds** - Use @Binds to tell Dagger which implementation it needs to use when providing an interface.
+
+`@Binds` must annotate an abstract function (since it's abstract, it doesn't contain any code and the class needs to be abstract too). The return type of the abstract function is the interface we want to provide an implementation for (i.e. Storage). The implementation is specified by adding a unique parameter with the interface implementation type (i.e. SharedPreferencesStorage). 
+
+```
+@Module
+abstract class StorageModule {
+
+    // Makes Dagger provide SharedPreferencesStorage when a Storage type is requested
+    @Binds
+    abstract fun provideStorage(storage: SharedPreferencesStorage): Storage
+}
+```
+
+* Use @BindsInstance for objects that are constructed outside of the graph (e.g. instances of Context).
 	
 ## Providing dependency from another component
 
@@ -52,9 +67,7 @@
     public interface ApplicationComponent {
 
     void inject(MyApplication application);
-
     NetworkService getNetworkService();
-
     DatabaseService getDatabaseService();
     }
    ```
