@@ -55,3 +55,4 @@ class taxis: Vehicle() // but still works fine
 }
 ```
 * [ref link](https://www.journaldev.com/18719/kotlin-sealed-class)
+* [very good example to understand](https://articles.caster.io/android/handling-optional-errors-using-kotlin-sealed-classes/)
