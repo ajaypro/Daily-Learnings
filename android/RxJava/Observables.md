@@ -16,6 +16,15 @@
   * Flowable - In case observable emitting a lot of values which cannot be handled then its 
   throws `MissingBackpressureException`, flowable similar observable but it does not have `MissingBackpressureException` 
   so we use flowable 
-    * (About Flowable buffer)[https://stackoverflow.com/questions/43934143/difference-between-backpressurestrategy-buffer-and-                   onbackpressurebuffer-operator]
+    * (About Flowable buffer)[https://stackoverflow.com/questions/43934143/difference-between-backpressurestrategy-buffer-and-                  onbackpressurebuffer-operator]
     * With `BackpressureStrategy` it will ignore the items to handle the exception based on strategy provided
     * (Flowables) [https://android.jlelse.eu/rxjava-flowables-what-when-and-how-to-use-it-9f674eb3ecb5]
+    
+ ## Creating Observable different methods 
+ 
+ * `Observable.create()` - will be able to emit multiple items.
+ * `Observable.just()` - only 10 items as it takes (Array[]) of size 10
+ * `Observable.repeat()` repeats the emitted items based on mentioned number 
+ * `Observable.range()` - can be replaced instead of looping along with other operators
+ * fromArray(), fromIterable() and fromCallable() only emit items when subscribed by the observers.
+ * `Observable.fromCallable()` - returns object from db transaction a callable object
