@@ -7,6 +7,10 @@
   * RxAndroid extends RxJava to provide main thread schedulers, loopers, handlers to Rxjava as it is a library thats how we get 
    `AndroidSchedulers.mainThread()`
   * Every library has rxjava version which is to be leveraged to work easily.
+  * Every Observable will be subscribed to observers or consumers, when its observers the `subscribeOn()` will return void as the 
+    observer has `onSubscribe()` which takes disposables, if its consumer the `subscribe` will return disposable
+  * `disposable.clear()` - its clears the observers subscribed to observables  
+  * `disposable.dispose()` - its clears both observers and observables. 
    
 ## Blogs
 
