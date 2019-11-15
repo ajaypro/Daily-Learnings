@@ -20,5 +20,7 @@
 * [Understanding what is disposable under the hood](https://medium.com/@vanniktech/rxjava-2-disposable-under-the-hood-f842d2373e64)
 * [Rxjava examples - realtime cases](https://github.com/kaushikgopal/RxJava-Android-Samples)
 * [ - Complete Rx java with examples and explanation](https://proandroiddev.com/rxjava-different-types-of-subjects-ef9183b5e87e)
+* [https://www.baeldung.com/rxkotlin](Rxkotlin)
+* [https://code.tutsplus.com/tutorials/kotlin-reactive-programming-with-rxjava-and-rxkotlin--cms-31577](Rxkotlin)
 
 
