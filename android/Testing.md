@@ -22,3 +22,7 @@
   ## Hamcrest
   
   * It is a matcher well suited for checking the different between two lists, their contents, if two hashmaps are the same
+  
+  ## Blogs
+  
+  * [Test robo scipts locally useful for firebase](https://android.jlelse.eu/test-robo-scripts-locally-useful-for-firebase-test-lab-pre-launch-reports-41da83d5769f)
