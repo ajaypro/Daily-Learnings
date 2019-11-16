@@ -20,6 +20,11 @@
     * With `BackpressureStrategy` it will ignore the items to handle the exception based on strategy provided
     * (Flowables) [https://android.jlelse.eu/rxjava-flowables-what-when-and-how-to-use-it-9f674eb3ecb5]
     
+ ## Observable to livedata
+ 
+ * dependency implementation "android.arch.lifecycle:reactivestreams:1.1.1" 
+   Observable.frompublisher or Observable.toPublisher
+   
  ## Creating Observable different methods 
  
  * `Observable.create()` - will be able to emit multiple items.
