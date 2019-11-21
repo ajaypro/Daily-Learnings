@@ -14,9 +14,8 @@
      stopSelf
      onDestroy()
      ```
-* When services is started internnally a thread is started and calls `startService` and when `stopSelf` is called to stop service thread 
-  interally stops and `onDestory()` is called.
-* With attaching persistant notification we cannot make service as foreground service, important because a Started Service in the foreground 
+* When services  we can start a thread internnally a thread is started and calls `startService` and when `stopSelf` is called to stop service thread interally stops and `onDestory()` is called.
+* Without attaching persistant notification we cannot make service as foreground service, important because a Started Service in the foreground 
   is detached from the lifecycle of UI components (with the exception of the persistent notification)
 * A Service can be called multiples times but its `onCreate()` will be called only once. 
 * After starting a service with time if 5 seconds we need to `startForegroundService(Intent)` to make service foreground service and 
