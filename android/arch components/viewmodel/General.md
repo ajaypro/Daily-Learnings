@@ -27,4 +27,9 @@
     `ViewModelProviders.of(fragment, ViewModelProviderFactory(HomeViewModel::class)`
     
  * We do not dagger2 injection in this viewmodel because system is responsbile creating using `ViewmodelProviders factory` and managing the lifecycle of viewmodel that is lifecycleaware
-      
+ 
+ ## Blogs
+ 
+ * [Basic clear example of viewmodel] (https://medium.com/androiddevelopers/viewmodels-a-simple-example-ed5ac416317e)
+ * [Local changes and VM anipatterns](https://medium.com/androiddevelopers/locale-changes-and-the-androidviewmodel-antipattern-84eb677660d9)
+ * [VM and livedata antipatterns](https://medium.com/androiddevelopers/viewmodels-and-livedata-patterns-antipatterns-21efaef74a54)
