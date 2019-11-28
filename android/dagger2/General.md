@@ -221,3 +221,4 @@ abstract class StorageModule {
  
  [https://proandroiddev.com/dagger-2-part-ii-custom-scopes-component-dependencies-subcomponents-697c1fa1cfc]
  [http://frogermcs.github.io/dependency-injection-with-dagger-2-custom-scopes/]
+ * [Dagger optimizations in kotlin](https://medium.com/androiddevelopers/dagger-in-kotlin-gotchas-and-optimizations-7446d8dfd7dc?source=---------7----------------)
