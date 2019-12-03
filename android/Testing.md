@@ -1,3 +1,10 @@
+##Basics
+
+* `@RunWith(JUnit4.class)` annotation indicates the runner that will be used to run the tests in this class. A test runner is a library or set of tools that enables testing to occur and the results to be printed to a log. 
+* For espresso we use different test runners
+* `@SmallTest` annotation indicates that all the tests in this class are unit tests that have no dependencies, and run in milliseconds. The `@SmallTest, @MediumTest, and @LargeTest`annotations are conventions that make it easier to bundle groups of tests into suites of similar functionality.
+* You can only test methods that are public or package-protected
+* if your app was written such that the input to the `add()` could be either `double` or `float` use `closeTo()`
 ## Mockito 
   
   * We use to @mock objects so that even when the particular operation is crashed test cases won't fail. 
