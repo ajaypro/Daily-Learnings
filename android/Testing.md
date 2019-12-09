@@ -23,6 +23,9 @@
         .perform(click())
         .check(matches(isDisplayed())); 
   ```
+## AndroidX Test (WIP)
+* (Basics)[https://medium.com/androiddevelopers/write-once-run-everywhere-tests-on-android-88adb2ba20c5]
+* (Great code lab to learn complete Testing on  livedata, viewmodel)[https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-testing-basics/index.html?index=..%2F..index#0] 
 
 ## Mockito 
   
