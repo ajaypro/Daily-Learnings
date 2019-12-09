@@ -171,6 +171,8 @@ to the scope and pass the exception to the uncaughtExceptionHandler
 * (Coroutine execution in main thread)[https://medium.com/@trionkidnapper/launching-a-kotlin-coroutine-for-immediate-execution-on-the-main-thread-8555e701163b]
 * [good blogs for basics quick understanding](https://blog.mindorks.com/mastering-kotlin-coroutines-in-android-step-by-step-guide)
 * [examples with depth](https://medium.com/androidiots/androidiots-podscast-7-unmasking-kotlin-coroutines-ce2711269d3b)
+*  [google blog series very good ](https://medium.com/androiddevelopers/coroutines-on-android-part-ii-getting-started-3bff117176dd)
+* [async - coroutine](https://proandroiddev.com/async-operations-with-kotlin-coroutines-part-1-c51cc581ad33)
 
 ## Job
 
