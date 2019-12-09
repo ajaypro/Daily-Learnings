@@ -1,9 +1,6 @@
 
 ## Coroutines
 
-* [good blogs for basics quick understanding](https://blog.mindorks.com/mastering-kotlin-coroutines-in-android-step-by-step-guide)
-* [examples with depth](https://medium.com/androidiots/androidiots-podscast-7-unmasking-kotlin-coroutines-ce2711269d3b)
-
 * Coroutines are defined in their own scopes and unlike thread they do not block
 * Coroutines have a default job for each scope defined.
 * Many coroutines can run in a single thread at once.
@@ -11,8 +8,7 @@
 * A scope controls the lifetime of coroutines through its job. When you cancel the job of a scope, it cancels all coroutines started in    that scope
 * you can use a scope to cancel all running coroutines, the co-routine of particular scope
 
-* A coroutine can switch dispatchers any time after it's started. 
-  e.g a coroutine can start on the main dispatcher then use another dispatcher to parse a large JSON result off the main thread.
+* A coroutine can switch dispatchers any time after it's started. e.g a coroutine can start on the main dispatcher then use another dispatcher to parse a large JSON result off the main thread.
  `CoroutineScope(Dispatchers.Main + viewModelJob)`
  
 * A CoroutineScope can take a CoroutineContext as a parameter, above it takes `main` as threading policy and the job `viewModelJob`
@@ -172,6 +168,10 @@ to the scope and pass the exception to the uncaughtExceptionHandler
 * (coroutines over Rxjava) [https://proandroiddev.com/forget-rxjava-kotlin-coroutines-are-all-you-need-part-1-2-4f62ecc4f99b]
 * (comparision)[https://medium.com/capital-one-tech/coroutines-and-rxjava-an-asynchronicity-comparison-part-2-cancelling-execution-199485cdf068]
 * (coroutines over Rxjava - 2)[https://proandroiddev.com/forget-rxjava-kotlin-coroutines-are-all-you-need-d4dbdb509708]
+* (Coroutine execution in main thread)[https://medium.com/@trionkidnapper/launching-a-kotlin-coroutine-for-immediate-execution-on-the-main-thread-8555e701163b]
+* [good blogs for basics quick understanding](https://blog.mindorks.com/mastering-kotlin-coroutines-in-android-step-by-step-guide)
+* [examples with depth](https://medium.com/androidiots/androidiots-podscast-7-unmasking-kotlin-coroutines-ce2711269d3b)
+
 ## Job
 
 * Completable job has more features than `Job` like 
