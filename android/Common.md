@@ -1,6 +1,7 @@
 * [Deprecation of internal mobile app](http://adavis.info/2019/05/how-to-deprecate-an-internal-mobile-application.html)
 * [Communicate between fragment & actvitiy using livedata](https://android.jlelse.eu/communicate-between-fragments-and-activity-using-livedata-631526d6357a)
 * [app launch from zygote to activity](https://android.jlelse.eu/android-application-launch-explained-from-zygote-to-your-activity-oncreate-8a8f036864b)
+* [how view renders](https://medium.com/better-programming/understand-how-view-renders-in-android-763f0adfb95c)
 
 ### Viewmodel vs SavedStateinstance
 
