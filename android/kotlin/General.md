@@ -6,3 +6,4 @@
 * **RO** - [Effective kotlin blog](https://medium.com/@appmattus/effective-kotlin-31215a6cf847)
 * **RO** - [Great kotlin code collections for reference](https://github.com/eugenp/tutorials/tree/master/core-kotlin)
 * **YTP** - [Use case of algebraic data type](https://dev.to/danielw/from-network-response-to-algebraic-data-type-10co)
+* **YTP** - [academy for kotlin and java smal projects great area to improve coding skills](https://www.jetbrains.com/academy/?_ga=2.188154408.1468901473.1575556205-530452276.1571388639)
