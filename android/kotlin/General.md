@@ -5,3 +5,4 @@
 * [Either](https://medium.com/@lupajz/you-either-love-it-or-you-havent-used-it-yet-a55f9b866dbe)
 * **RO** - [Effective kotlin blog](https://medium.com/@appmattus/effective-kotlin-31215a6cf847)
 * **RO** - [Great kotlin code collections for reference](https://github.com/eugenp/tutorials/tree/master/core-kotlin)
+* **YTP** - [Use case of algebraic data type](https://dev.to/danielw/from-network-response-to-algebraic-data-type-10co)
