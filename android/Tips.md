@@ -17,7 +17,7 @@
   fragment if we don't get its ok to throw error during compile time(fail-fast) 
   
   ## Blogs
-* [Secrets of mvvm](https://android.jlelse.eu/exciting-secrets-about-mvvm-that-nobody-tells-you-a95548ea684b)
+* **YTT**[Secrets of mvvm](https://android.jlelse.eu/exciting-secrets-about-mvvm-that-nobody-tells-you-a95548ea684b)
 
 ## UI
 
