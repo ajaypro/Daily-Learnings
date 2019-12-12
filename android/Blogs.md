@@ -7,3 +7,4 @@
 * [Great in depth livedata, VM and testing details](https://medium.com/@JoseAlcerreca)
 * [series has how to build CI build, espresso robot pattern](https://medium.com/android-bits)
 * **YTR** [Read for great takeways droidcon and make notes](https://medium.com/asos-techblog/my-key-takeaways-from-droidcon-2019-21b3bf2eaeeb)
+* **RO** - [https://android-developers.googleblog.com]
