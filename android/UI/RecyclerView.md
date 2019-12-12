@@ -12,6 +12,7 @@
 * [MultiitemTypes](https://android.jlelse.eu/a-recyclerview-with-multiple-item-types-dfba3979050) - Using different layouts to load 
  into recyclerview with single adapter
 * [Animation](https://medium.com/better-programming/android-recyclerview-with-beautiful-animations-5e9b34dbb0fa)
+* **YTP** [parallex animation](https://medium.com/@patrick_iv/add-extra-depth-to-your-list-using-parallax-eddb27b369de)
 * DiffUtil
   * [Nice blog](https://antonioleiva.com/recyclerview-diffutil-kotlin/)
   * [https://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView]
