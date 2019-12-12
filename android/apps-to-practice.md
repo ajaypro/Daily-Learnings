@@ -11,7 +11,8 @@
 * https://medium.com/@rahul.singh/clean-architecture-kotlin-dagger-2-rxjava-mvvm-and-unit-testing-dc05dcdf3ce6
 * https://medium.com/@julesrosser
 * partially kotlin - https://github.com/agraharihim/Realm-RxJava-Caching-YoutubeApi
-* **Can learn everything modular, scalable, testable with latest tech**[The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android application architecture that is modular, scalable, maintainable and testable](https://github.com/VMadalin/kotlin-sample-app#architecture)
+* **Can learn everything modular, scalable, testable with latest tech** [The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android application architecture that is modular, scalable, maintainable and testable](https://github.com/VMadalin/kotlin-sample-app#architecture)
+* [The GoldMovies is based on Kotlin, MVVM architecture, coroutines, dagger, koin, and material designs & animations.](https://github.com/skydoves/GoldMovies)
 
 #### kotlin, android arch components
 * news app api - https://github.com/AkshayChordiya/android-arch-news-sample
