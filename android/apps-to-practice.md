@@ -13,6 +13,7 @@
 * partially kotlin - https://github.com/agraharihim/Realm-RxJava-Caching-YoutubeApi
 * **Can learn everything modular, scalable, testable with latest tech** [The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android application architecture that is modular, scalable, maintainable and testable](https://github.com/VMadalin/kotlin-sample-app#architecture)
 * [The GoldMovies is based on Kotlin, MVVM architecture, coroutines, dagger, koin, and material designs & animations.](https://github.com/skydoves/GoldMovies)
+* [Simple weather app](https://android.jlelse.eu/simple-weather-forecast-app-using-kotlin-retrofit-and-rxjava2-c4b1f4d9344e)
 
 #### kotlin, android arch components
 * news app api - https://github.com/AkshayChordiya/android-arch-news-sample
