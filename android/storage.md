@@ -15,3 +15,11 @@
   
   [Video](https://www.youtube.com/watch?v=UnJ3amzJM94&list=PLWz5rJ2EKKc_xXXubDti2eRnIKU0p7wHd&index=42)
   [blogs](https://blog.mindorks.com/understanding-the-scoped-storage-in-android)
+  
+  ## Types of storage 
+  
+  **Bundle**
+  * System keeps this bundle in RAM,
+  * Bundle size is 100K so keep it small otherwise it would crashing your app with the `TransactionTooLargeException` error
+
+
