@@ -16,6 +16,11 @@
     }
     ```
   * Creation of viewmodel is done by `ViewmodelProviders.of(context).get(yourViewmodel)`
+  
+  * The factory method pattern is a creational design pattern that uses factory methods to create objects. A factory method is a method that returns an instance of the same class.
+  * A factory method is a method that returns an instance of the same class.
+  * `ViewModelProvider` returns an existing `ViewModel` if one exists, or it creates a new one if it does not already exist.
+  * `ViewModelProvider` creates a ViewModel instance in association with the given scope (an activity or a fragment).
  
  ## Viewmodel() vs Viewmodel(arg1, arg2...)
  
