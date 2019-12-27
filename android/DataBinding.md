@@ -32,4 +32,39 @@ Here we use import instead of variable
     * Orientation - maintains data through orientation changes
     * no memory leaks 
  * Two way binding - passing data from viewmodel to view and from view to viewmodel 
+ 
+DataBinding with Livedata& ViewModel
+------------------------------------
 
+* livedata objects can be directed assigned to views using databinding. 
+* Defining data variable 
+  ```
+  <data>
+
+        <variable
+            name="gameViewModel"
+            type="com.example.android.guesstheword.screens.game.GameViewModel" />
+    </data>
+  ```
+* Assigning Viewmodel to data binding in activity/fragment class 
+  ```
+  binding.gameViewModel = viewModel
+  ```
+* Defining lifecycleOwner to for livedata to observe, This is used so that the binding can observe LiveData updates   
+  ```
+  binding.lifecycleOwner = this(activity/fragment)
+  ```
+* Now we don't have to create an observe livedata object in UI and update the views, like below
+  ```
+  viewModel.score.observe(this, Observer { newScore ->
+   binding.scoreText.text = newScore.toString()
+  })
+  ```
+* instead
+  ```
+  <TextView
+   android:id="@+id/score_text"
+   ...
+   android:text="@{@string/score_format(gameViewModel.score)}"
+   ... />
+  ```
