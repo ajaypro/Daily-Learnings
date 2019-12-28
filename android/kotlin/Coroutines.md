@@ -12,7 +12,18 @@
  `CoroutineScope(Dispatchers.Main + viewModelJob)`
  
 * A CoroutineScope can take a CoroutineContext as a parameter, above it takes `main` as threading policy and the job `viewModelJob`
-* Scopes created with the `CoroutineScope` constructor add an implicit job, which you can cancel using   `uiScope.coroutineContext.cancel()`
+* Scopes created with the `CoroutineScope` constructor add an implicit job, which you can cancel using   `uiScope.coroutineContext.cancel()`.
+
+To use coroutines we need three things: Job, Dispatcher, Scope
+
+## Job
+* Basically, a job is anything that can be canceled. Every coroutine has a job, and you can use the job to cancel the coroutine. Jobs   can be arranged into parent-child hierarchies. Canceling a parent job immediately cancels all the job's children, which is a lot more convenient than canceling each coroutine manually.
+
+## Dispatcher 
+* The dispatcher sends off coroutines to run on various threads. For example, Dispatcher.Main runs tasks on the main thread, and Dispatcher.IO offloads blocking I/O tasks to a shared pool of threads.
+
+## Scope 
+* A coroutine's scope defines the context in which the coroutine runs. A scope combines information about a coroutine's job and dispatcher. Scopes keep track of coroutines. When you launch a coroutine, it's "in a scope," which means that you've indicated which scope will keep track of the coroutine.
 
 * The library adds a `viewModelScope` as an extension function of the `ViewModel` class. This scope is bound to `Dispatchers.Main` and        will automatically be cancelled when the `ViewModel` is cleared.
 
