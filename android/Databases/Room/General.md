@@ -7,6 +7,11 @@
   * When we give an object to room it internally maps the object attributes to the columns of the table and saves as an object
      and when we retreive it returns a object with data and maps it to variables in pojo class
 * When creating a entity we always mention @Entity(tableName = "users") otherwise it would be obfuscated by proguard. 
+
+## Test
+
+* Room has in-memory db, "In-memory" means that this database is not saved on the file system and will be deleted after the tests run.
+* when building the in-memory database, the code calls another test-specific method, allowMainThreadQueries. By default, you get an error if you try to run queries on the main thread. This method allows you to run tests on the main thread
  
  ```
     @Entity(tableName = "user") // this avoids proguard to obfuscate my model class
