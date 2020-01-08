@@ -68,3 +68,13 @@ DataBinding with Livedata& ViewModel
    android:text="@{@string/score_format(gameViewModel.score)}"
    ... />
   ```
+  
+  Binding Adapter
+  --------------
+  
+ * Binding adapters are a good solution when you need to transform complex data.
+ * `binding.executePendingBindings()` This call is an optimization that asks data binding to execute any pending bindings right away. 
+    It's always a good idea to call `executePendingBindings()` when you use binding adapters in a RecyclerView, 
+	because it can slightly speed up sizing the views.
+ * [Codelab to understand databinding with RV using @bindingadapter for complex data]
+    (https://codelabs.developers.google.com/codelabs/kotlin-android-training-diffutil-databinding/#6)
