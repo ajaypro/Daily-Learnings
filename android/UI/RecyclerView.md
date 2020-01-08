@@ -42,7 +42,7 @@
     notifyItemRangeInserted
     notifyItemRangeRemoved
  
- ListAdapter
+ POM - ListAdapter
  -----------
  
  * We use list adapter which takes Data, VH as type and diffutil as constructor argument.
@@ -50,8 +50,9 @@
     difference in list 
   * Also internally implements getItem() and getItemCount(), we don't need to call in adapter
   * AsyncListDiffer a helper for computing differences between two lists with on DiffUtil and runs on bg thread
+  * [in depth blog](https://medium.com/@hackathon.blog.42/listadapter-renewed-9b5b496198e2)
   
-ViewHolder as singletong
+POM - ViewHolder as singleton
 ------------------------
 
 * creating viewholder instance from companion object which gives class instance and therefore
