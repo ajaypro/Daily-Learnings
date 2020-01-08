@@ -41,7 +41,36 @@
     notifyItemRangeChanged
     notifyItemRangeInserted
     notifyItemRangeRemoved
-    
+ 
+ ListAdapter
+ -----------
+ 
+ * We use list adapter which takes Data, VH as type and diffutil as constructor argument.
+    Uses diffutil which further is implemented by asyncListDiffer which runs in bg thread to provide 
+    difference in list 
+  * Also internally implements getItem() and getItemCount(), we don't need to call in adapter
+  * AsyncListDiffer a helper for computing differences between two lists with on DiffUtil and runs on bg thread
+  
+ViewHolder as singletong
+------------------------
+
+* creating viewholder instance from companion object which gives class instance and therefore
+* making viewholder class private constructor so no ones calls it, moving viewholder creation from onCreateViewHolder() to viewholder class
+e.g 
+ ```
+ class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        companion object {
+            fun from(parent: ViewGroup) = ViewHolder(LayoutInflater.from(parent.context)
+                    .inflate(R.layout.list_item_sleep_night, parent, false))
+        }
+  ```
+  In the `onCreateViewHolder()` 
+   
+   ```
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = from(parent)
+   ```
+     
  ## Repos
  
  * [To practice](https://github.com/googlesamples/android-sunflower)
