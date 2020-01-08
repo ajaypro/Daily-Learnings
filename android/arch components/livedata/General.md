@@ -15,3 +15,7 @@
   * should register the observer of livedata onCreate() only 
   * it will be automatically removed once the lifecycleowner is finished
   * LiveData can also be used for ui which does not have lifecycle methods use `LiveData.observeForever(Observer)`  and we need to remove     it manually by using LiveData.removeObserver(Observer).
+  
+## livedata with retrofit
+
+* [retrofit with livedata](https://medium.com/@pivincii/using-retrofit-with-livedata-5c5a49544ba3)
