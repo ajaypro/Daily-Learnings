@@ -31,6 +31,7 @@ fun testEventMoveToCreatedFragment(){
 ## Blogs
 
 * [fragments common queries](https://medium.com/better-programming/android-fragments-common-queries-mistakes-1c42e9f6b44f)
+* [Very Useful fragment scenarios](https://androidlearnersite.wordpress.com/2017/02/27/fragment-lifecycle-during-fragment-transaction/)
 
 ## New fragment release 
 
