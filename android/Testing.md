@@ -23,6 +23,12 @@
         .perform(click())
         .check(matches(isDisplayed())); 
   ```
+## Testing Android Arch components
+ **Dependency** 
+* testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+* `InstantTaskExecutorRule` - annotate with @get:Rule it causes some code in the InstantTaskExecutorRule class to be run before and after the tests. This rule runs all Architecture Components-related background jobs in the same thread so that the test results happen synchronously, and in a repeatable order. When you write tests that include testing LiveData, use this rule!
+* Please ensure that livedata is observing
+
 ## AndroidX Test (WIP)
 * (Basics)[https://medium.com/androiddevelopers/write-once-run-everywhere-tests-on-android-88adb2ba20c5]
 * (Great code lab to learn complete Testing on  livedata, viewmodel)[https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-testing-basics/index.html?index=..%2F..index#0] 
