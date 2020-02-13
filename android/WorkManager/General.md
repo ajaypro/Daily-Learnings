@@ -9,6 +9,16 @@
    * also it does takes care of threading, resources allocation, runs tasks even when app @background or closed, when system is 
       rebooted. 
    * WorkManager internally chooses between Jobscheduler or alarm manager with broadcast receiver based on api level to execute its tasks.
+   * WorkManager is not intended for in-process background work that can be terminated safely if the app process is killed.
+   * WorkManager is not intended for tasks that require immediate execution.
+   * WorkManager is for background work that's deferrable and requires guaranteed execution
+       * Deferrable means that the work is not required to run immediately. For example, sending analytical data to the server o r     syncing the database in the background is work that can be deferred.
+       * Guaranteed execution means that the task will run even if the app exits or the device restarts.
+   * The `doWork()` method inside the Worker class is called on a background thread. The method performs work synchronously, and should return a `ListenableWorker.Result` object. The Android system gives a Worker a maximum of 10 minutes to finish its execution and return a `ListenableWorker.Result` object. After this time has expired, the system forcefully stops the Worker.
+   * To create a `ListenableWorker.Result` object, call one of the following static methods to indicate the completion status of the background work:
+      * Result.success()—work completed successfully.
+      * Result.failure()—work completed with a permanent failure.
+      * Result.retry()—work encountered a transient failure and should be retried.
  * It uses `Worker` class and overrides `doWork()` where the acual tasks run, 
       * this method runs on bg thread and also runs for max of 10 mins, and does work synchrousnly which returns a `Result` object as 
          completed tasks. 
