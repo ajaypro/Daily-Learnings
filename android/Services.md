@@ -14,12 +14,10 @@
      stopSelf
      onDestroy()
      ```
-* When services  we can start a thread internnally a thread is started and calls `startService` and when `stopSelf` is called to stop service thread interally stops and `onDestory()` is called.
-* Without attaching persistant notification we cannot make service as foreground service, important because a Started Service in the foreground 
-  is detached from the lifecycle of UI components (with the exception of the persistent notification)
+* When we start services  we can start a thread internally and calls `startService` and when `stopSelf` is called to stop service thread interally stops and `onDestory()` is called.
+* Without attaching persistant notification we cannot make service as foreground service, important because a Started Service in the foreground is detached from the lifecycle of UI components (with the exception of the persistent notification)
 * A Service can be called multiples times but its `onCreate()` will be called only once. 
-* After starting a service with time if 5 seconds we need to `startForegroundService(Intent)` to make service foreground service and 
-  for apps running in background it should run the service foreground
+* After starting a service with time if 5 seconds we need to call `startForegroundService(Intent)` to make service foreground service and for apps running in background it should run the service foreground.
  * Started Services can run in the foreground. Again, the term foreground doesn’t apply to whether the Service is running 
   on the main Thread or a Background Thread. It means that the Android system will give this service highest priority and 
   will try not to destroy it when t is running low on system resources.
@@ -27,12 +25,19 @@
      music app playing or record music
      app that gets fine grained location
      
+* **When system destroys service due to low memory issues the service behaves based on what its onStartCommand() returns**
+                            Auto-Restart          Intent
+* **START_STICKY**            YES                  Null    restarts automatically with null intent managed explicity, no need to
+                                                           remember state idle for music player which starts again but does not play old 
+                                                           song. 
+  **START_NON_STICKY**         NO    with same old intent  does not restart automatically after selfstop but will be triggered 
+                                                           when a new intent comes periodically, e.g alarm service, polling to server
+  **START_REDELIVER_INTENT**  YES              old intent  restart automatically and provides the same intent, e.g downloading files.
+  
 ### Bound Services
 
-* Bound Services allow a connection to be established between the Android component binding to the Service, this connection is an IBinder 
-  which allows methods to be called on the Service. 
-* if the Service (Bound or Started) needs to send messages to the bound client or whatever component started a Service, it has to use something 
-  like `LocalBroadcastManager` when the the client and Service are local to one process.
+* Bound Services allow a connection to be established between the Android component binding to the Service, this connection is an IBinder which allows methods to be called on the Service. 
+* if the Service (Bound or Started) needs to send messages to the bound client or whatever component started a Service, it has to use something like `LocalBroadcastManager` when the the client and Service are local to one process.
   
   ```
   public class MyActivity extends Activity{
