@@ -26,13 +26,13 @@
      app that gets fine grained location
      
 * **When system destroys service due to low memory issues the service behaves based on what its onStartCommand() returns**
-                            Auto-Restart          Intent
-* **START_STICKY**            YES                  Null    restarts automatically with null intent managed explicity, no need to
-                                                           remember state idle for music player which starts again but does not play old 
-                                                           song. 
-  **START_NON_STICKY**         NO    with same old intent  does not restart automatically after selfstop but will be triggered 
-                                                           when a new intent comes periodically, e.g alarm service, polling to server
-  **START_REDELIVER_INTENT**  YES              old intent  restart automatically and provides the same intent, e.g downloading files.
+
+                            
+* **START_STICKY** - restarts automatically with null intent managed explicity, no need to remember state idle for music player which starts again but does not play old song. 
+
+  **START_NON_STICKY**  does not restart automatically after selfstop but will be triggered  when a new intent comes periodically, e.g alarm service, polling to server.
+  
+  **START_REDELIVER_INTENT**   restart automatically and provides the same intent, e.g downloading files.
   
 * **Check if service is running** - Get activitymanager and use getRunningServices to find the service.
 * **Does service run even when activity is killed** - https://stackoverflow.com/questions/36101462/is-a-service-independent-of-the-activity-life-cycle
