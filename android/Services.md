@@ -34,6 +34,9 @@
                                                            when a new intent comes periodically, e.g alarm service, polling to server
   **START_REDELIVER_INTENT**  YES              old intent  restart automatically and provides the same intent, e.g downloading files.
   
+* **Check if service is running** - Get activitymanager and use getRunningServices to find the service.
+* **Does service run even when activity is killed** - https://stackoverflow.com/questions/36101462/is-a-service-independent-of-the-activity-life-cycle
+  
 ### Bound Services
 
 * Bound Services allow a connection to be established between the Android component binding to the Service, this connection is an IBinder which allows methods to be called on the Service. 
