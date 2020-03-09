@@ -1,6 +1,7 @@
 ## General
 
   * Rxjava is a java VM implementation of Reactive Extensions
+  * Reactive streams are immutable which are is why we can chain functions such as map, filter clickStream.map(f).scan(g)
   * Reactive Extensions is library for composing asynchronus, event-based programs by using observables
   * If your sure about the task you know the time taken e.g like image processing use computation 
   and if your unsure about the task like network call, file move or copy, db operaion use io schedulers
