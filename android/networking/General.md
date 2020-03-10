@@ -9,3 +9,8 @@
 * While using retrofit we have to make calls using the call interface of okhttp, but if we are using Rxjava we can use 
  Single which gives success and error. 
 * Single cannot be used again if once used
+
+OkHttp
+------
+
+* [Interceptors with use-cases](https://blog.mindorks.com/okhttp-interceptor-making-the-most-of-it)
