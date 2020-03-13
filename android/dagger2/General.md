@@ -6,6 +6,10 @@
 * Annotation processing is same as reflection but does it at build time was used in dagger1 for creating instance alone but still having 
   runtime crash  
   
+## WorkManager
+
+* Dagger does not support constructor injection for workmanager, because worker is created using `WorkFactory`
+  
 ## Inversion of control (IOC)
  
  * When classes need dependencies, create the instance and provide to required classes known as IOC
