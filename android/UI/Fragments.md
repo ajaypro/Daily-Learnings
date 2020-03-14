@@ -4,6 +4,23 @@
   your activity on load will look for the element in the activity, not in the fragment. 
 * Better approach would be implementing `OnClickListener` to your fragment class and overriding `onCreateView` 
   in your fragment where you assign the listener to your button.
+**Fragment.newInstance()** - Creating this method in fragment, because when android decides to recreate fragment it will call noargs
+ constructor of the fragment only so overloading a constructor in fragment is of no use. 
+ Instead creating this static method and passing arguments to it as bundle and setarguments to fragment, we can call this in fragment's 
+ `onCreate()`. 
+ ```
+  public static MyFragment newInstance(int someInt) {
+    MyFragment myFragment = new MyFragment();
+
+    Bundle args = new Bundle();
+    args.putInt("someInt", someInt);
+    myFragment.setArguments(args);
+
+    return myFragment;
+}
+ ```
+ * This Bundle will be available even if the Fragment is somehow recreated by Android.
+ * `setArguments` can only be called before the Fragment is attached to the Activity.
   
 Android OS displaying Dynamic Layouts of fragments
 --------------------------------------------------
