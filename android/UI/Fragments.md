@@ -4,6 +4,14 @@
   your activity on load will look for the element in the activity, not in the fragment. 
 * Better approach would be implementing `OnClickListener` to your fragment class and overriding `onCreateView` 
   in your fragment where you assign the listener to your button.
+  
+Android OS displaying Dynamic Layouts of fragments
+--------------------------------------------------
+
+* Depending upon the orientation the device is set initially or going by device screen size it looks for qualifiers in layout folder
+  such a `layout-prod` and `layout-land` if not then it start looking into default layout
+
+
 
 ## Testing 
 
