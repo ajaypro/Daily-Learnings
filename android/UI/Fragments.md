@@ -4,6 +4,10 @@
   your activity on load will look for the element in the activity, not in the fragment. 
 * Better approach would be implementing `OnClickListener` to your fragment class and overriding `onCreateView` 
   in your fragment where you assign the listener to your button.
+* Unlike activity fragment class does not have finish(), but you can call `getActivity().finish()`
+* `getActivity().finishAffinity()` It will remove all the fragment which pushed by the current activity from the Stack with the Activity     too
+* Never finish activities in fragment because, a single activity might be hosting many fragments, so always have activity implement interface created by the fragment that you want to communicate and pass the information, let activity decide what todo.
+
 **Fragment.newInstance()** - Creating this method in fragment, because when android decides to recreate fragment it will call noargs
  constructor of the fragment only so overloading a constructor in fragment is of no use. 
  Instead creating this static method and passing arguments to it as bundle and setarguments to fragment, we can call this in fragment's 
