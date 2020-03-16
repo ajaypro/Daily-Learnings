@@ -14,6 +14,31 @@
 * A CoroutineScope can take a CoroutineContext as a parameter, above it takes `main` as threading policy and the job `viewModelJob`
 * Scopes created with the `CoroutineScope` constructor add an implicit job, which you can cancel using   `uiScope.coroutineContext.cancel()`.
 
+Under the hood
+--------------
+
+* Coroutines create optimized callbacks it has a `interface Continution<T>`
+```
+suspend fun loginUser(login: String, password: String): User{
+val user = userService.login(login, password)
+val userDb = userDb.save(user)
+return userDb
+}
+```
+* The above suspend kotlin compiler will change it to
+```
+fun loginUser(login: String, password: String, continution: Continution<Any?>){
+val user = userService.login(login, password)
+val userDb = userDb.save(user)
+continution.resume(user)
+}
+```
+* Here the suspend keyword is changed into continuation and the `continution.resume(user)` is result that will be communicated as 
+ a callback to coroutine .
+* Since the compiler generates state machine, the suspend function won't stop until it completes the work and also the suspend function
+ will continue without blocking the thread because the everything that needs to resume its in continuation object thats passed around.
+
+
 To use coroutines we need three things: Job, Dispatcher, Scope
 
 ## Job
