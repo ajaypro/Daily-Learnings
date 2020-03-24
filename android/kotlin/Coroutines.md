@@ -88,6 +88,18 @@ To use coroutines we need three things: Job, Dispatcher, Scope
 ## Job
 * Basically, a job is anything that can be canceled. Every coroutine has a job, and you can use the job to cancel the coroutine. Jobs   can be arranged into parent-child hierarchies. Canceling a parent job immediately cancels all the job's children, which is a lot more convenient than canceling each coroutine manually.
 
+* We can decide to complete the job by calling `job.complete()` not the coroutine or `job.completeExceptionally()` if there is 
+  exception
+* using `job.invokeOnCompletion()` is used for informing the user if something goes wrong 
+* `CoroutineScope(IO + job).launch{ } job.cancel` - this only cancels particular job, not the coroutine context
+* To update anything on mainthread toast, updateing textview use globalscope
+ ```
+  fun updateTextView(){
+  GlobalScope.launch(Main){
+     textView.setText("Updating in main thread using coroutine")
+  ```
+* If a job is cancelled only a new job is started, we cannot resuse the old job  
+
 ## Dispatcher 
 * The dispatcher sends off coroutines to run on various threads. For example, Dispatcher.Main runs tasks on the main thread, and Dispatcher.IO offloads blocking I/O tasks to a shared pool of threads.
 
