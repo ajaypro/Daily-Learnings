@@ -2,6 +2,49 @@
 ## Coroutines
 
 * Coroutines are defined in their own scopes and unlike thread they do not block
+* `launch` - coroutine builder constructs coroutine and ready to go
+
+```
+* We can start one coroutine in one thread and can switch to another thread to update or do someother activity 
+  
+ button.setOnClickListener{
+ // Started in IO thread 
+ CoroutineScope(IO).lauch{
+    apiRequest()
+    }
+  
+  suspend fun setTextOnMainthread(str: String){
+  // Switcing to main thread context from IO thread
+  withContext(Main){
+   textView.setText = str
+  }
+  }
+ suspend fun apiRequest1(){
+ val result1 = getApiResult1()
+ setTextOnMainthread(result1)
+ 
+ // runs the second api request since its in same job its runs one after the other
+ 
+ val result2 = getApiResult2(result1)
+ setTextOnMainthread(result2)
+ }
+ 
+ suspend fun getApiResult(): String{
+  delay(1000)
+  return RESULT1
+ }
+ 
+ suspend fun getApiResult2(): String{
+  delay(1000)
+  return RESULT2
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+```
 * Coroutines have a default job for each scope defined.
 * Many coroutines can run in a single thread at once.
 * Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
@@ -48,6 +91,9 @@ To use coroutines we need three things: Job, Dispatcher, Scope
 * The dispatcher sends off coroutines to run on various threads. For example, Dispatcher.Main runs tasks on the main thread, and Dispatcher.IO offloads blocking I/O tasks to a shared pool of threads.
 
 ## Scope 
+* Default - for heavy computation, working with huge collections 
+* IO - for db and network calls 
+* Main - to interact with ui thread 
 * A coroutine's scope defines the context in which the coroutine runs. A scope combines information about a coroutine's job and dispatcher. Scopes keep track of coroutines. When you launch a coroutine, it's "in a scope," which means that you've indicated which scope will keep track of the coroutine.
 
 * The library adds a `viewModelScope` as an extension function of the `ViewModel` class. This scope is bound to `Dispatchers.Main` and        will automatically be cancelled when the `ViewModel` is cleared.
