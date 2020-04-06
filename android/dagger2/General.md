@@ -10,7 +10,13 @@ A dependency consumer asks for the dependency(Object) from a dependency provider
  
  * any object or collaborator in your app should not know anything about instances creation and lifecycle and this should be managed by our dependency injection framework.
  **Benefits** : No reflection at all, graph validation and preconditions at compile time, easily debuggable, more performance.
- Code obfuscation: it uses method dispatch, like hand written code
+ Code obfuscation: it uses method dispatch, like hand written code.
+ * Dagger2 follows order of binding dependencies such as constructor injection for class, field injection, method injection this avoids 
+   nullpointerException.
+   
+   Blog
+ 
+ * (dagger2 good blog)[https://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/]
  
  
  Annotation Processor
