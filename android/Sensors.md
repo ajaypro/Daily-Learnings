@@ -11,5 +11,9 @@ Sensors
   ## Barometer
     * If your phone has barometer then barometer will help GPS to accurately detect your location
     help you to detect many fitness activities like tracking the steps you walk throughout the day
+    
+ ## Pedometer Sensor
+ 
+   * Tracks steps accurately more than accelerometer sensor
 
 
