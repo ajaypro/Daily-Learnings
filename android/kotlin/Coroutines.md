@@ -346,7 +346,11 @@ suspend fun primeNumber(){
 
 * This test will always fail. The call to launch will return immediately and end the test case. The exception from `await()` may happen before or after the test ends, but the exception will not be thrown in the test call stack. It will instead be thrown into scope's uncaught exception handler.
 
-* Kotlin has the `runBlocking` function that blocks while it calls suspend functions. When runBlocking calls a suspend function, instead of suspending like normal it will block just like a function. You can think of it as a way to convert suspend functions into normal function calls.
+* Kotlin has the `runBlocking` function that blocks while it calls suspend functions. Inside the runBlocking block what ever executes it block the main thread. 
+`runBlocking` used inwriting testcases for testing co-routines, also used to learn details of how co-routines work 
+In case if we want to use suspend functions without co-routine then we use runblocking 
+[reference link - good explaantion](https://www.youtube.com/watch?v=k9yisEEPC8g)
+You can think of it as a way to convert suspend functions into normal function calls.
 
 * Since runBlocking runs coroutines just like a normal function, it will also throw exceptions just like a normal function
 
