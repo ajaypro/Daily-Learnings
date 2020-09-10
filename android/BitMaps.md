@@ -37,3 +37,10 @@ image or bitmaps.
    * [Caching Bitmaps](https://developer.android.com/topic/performance/graphics/cache-bitmap.html)
    * [Loading large bitmpas efficiently](https://developer.android.com/topic/performance/graphics/load-bitmap)
    * [basic code on how to use glide](https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library#setup)
+   
+   #### Handling image rotation after taking photo
+    * Most phone cameras are landscape, meaning if you take the photo in portrait, the resulting photos will be rotated 90 degrees. In this case, the camera
+      software should populate the Exif data with the orientation that the photo should be viewed in.
+      Note that the below solution depends on the camera software/device manufacturer populating the Exif data, so it will work in most cases, but it is 
+      not a 100% reliable solution.
+    * [Very good stackoaverflow post](https://stackoverflow.com/questions/14066038/why-does-an-image-captured-using-camera-intent-gets-rotated-on-some-devices-on-a)
