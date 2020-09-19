@@ -386,7 +386,7 @@ suspend fun primeNumber(){
 
 ## UseCase 2
 
-* Using dispatcher while running coroutine follow this video from 20:20 sec [https://www.youtube.com/watch?v=ZTDXo0-SKuU&t=16s](Very good coroutine with test case video )
+* Using dispatcher while running coroutine follow this video from 20:20 sec (https://www.youtube.com/watch?v=ZTDXo0-SKuU&t=16s)[Very good coroutine with test case video]
 	
 * The test runner doesn't know anything about coroutines so we can't make this test a suspend function. We could launch a coroutine using a `CoroutineScope` like in a ViewModel, however tests need to run coroutines to completion before they return. Once a test function returns, the test is over. Coroutines started with `launch` are asynchronous code, which will complete at some point in the future. Therefore to test that asynchronous code, you need some way to tell the test to wait until your coroutine completes. Since launch is a non-blocking call, that means it returns right away and can continue to run a coroutine after the function returns, it can't be used in tests.
 
