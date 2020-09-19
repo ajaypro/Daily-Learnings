@@ -281,6 +281,27 @@ to the scope and pass the exception to the uncaughtExceptionHandler
 * Ability to very easily cancel jobs and create new ones
 * If a job is cancelled we cannot reuse the job, rather we can recreate the job. 
 
+## Exception Hanlding
+
+* for launch -> the exceptions are thrown,
+* aysnc -> hold exceptions until await is called 
+* Normally exceptions are handled in scopes such as coroutinescope, supervisorscope 
+* Coroutinescope -> If there are series of network call and if any of network call fails the coroutine cancels everything
+* SupervisorScope -> won't cancel other children network calls if any of the network call fails, returns a empty list and continues with other calls.
+
+## How to cancel a coroutine
+
+* e.g 
+```
+scope.launch(Dispatchers.IO){
+   for(name in files){ // looping
+   yield()/ ensureActive() // check for whether coroutine is active as it would be doing heavy computation it won't listen to cancellation so we need to check
+    this method 
+      readFile(name) // read file 
+}
+
+```
+
 ## Using single job and cancelling
 
 * Launching coroutine IO with job helps us to deal only with that job alone, the coroutine will create and run the job within its own 
@@ -307,6 +328,8 @@ scope.cancel()
 
 ## About Cancellation 
 
+* When you cancel coroutinescope all children in scope will also be cancelled. 
+
 * `suspendCoroutine` is a good choice when you don't need to support cancellation. Typically, however, cancellation is a concern and you   can use `suspendCancellableCoroutine` to propagate cancellation to libraries that support cancellation to a callback based API. 
 
 * Coroutines package has cancellable in their package, all suspending fucntions in `kotlinx.coroutines` are cancellable. So these functions will check if the coroutine are been cancelled if not they cancel it. 
@@ -319,10 +342,9 @@ suspend fun primeNumber(){
   delay(1000)
   }
   }
+  
 ```
 * If there aren't any cancellable functions then we can use `isActive` in coroutine to check is alive
-
-
 
 
 ## Test Setup
@@ -342,6 +364,31 @@ suspend fun primeNumber(){
 
 ## Testing Co-routines
 
+## UseCase 1
+ 
+* Using `runBLocking` function to be used when we are not using coroutine such as 
+  e.g 
+  
+  ```
+      suspend fun loadData() {
+        val data = networkData() // this is not calling a coroutine so we can use runBlocking to test it
+         } 
+	 
+	Testing 
+	
+	fun `test_load_data`() = runBlocking {
+	val viewmodel = ViewModel()
+	viewmodel.loadData()
+	}
+	
+ ```
+ 
+* runBlocking is a coroutine library and it starts a coroutine and blocks the main thread until everything finishes
+
+## UseCase 2
+
+* Using dispatcher while running coroutine follow this video from 20:20 sec [https://www.youtube.com/watch?v=ZTDXo0-SKuU&t=16s](Very good coroutine with test case video )
+	
 * The test runner doesn't know anything about coroutines so we can't make this test a suspend function. We could launch a coroutine using a `CoroutineScope` like in a ViewModel, however tests need to run coroutines to completion before they return. Once a test function returns, the test is over. Coroutines started with `launch` are asynchronous code, which will complete at some point in the future. Therefore to test that asynchronous code, you need some way to tell the test to wait until your coroutine completes. Since launch is a non-blocking call, that means it returns right away and can continue to run a coroutine after the function returns, it can't be used in tests.
 
 * This test will always fail. The call to launch will return immediately and end the test case. The exception from `await()` may happen before or after the test ends, but the exception will not be thrown in the test call stack. It will instead be thrown into scope's uncaught exception handler.
