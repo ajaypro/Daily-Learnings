@@ -5,9 +5,10 @@
 * `launch` - coroutine builder constructs coroutine and ready to go
 * [Examples of coroutines with different uses cases, useful to learn from basics to advance](https://github.com/mitchtabian/Kotlin-Coroutine-Examples)
 * [Very good kotlin coroutines repo with testcases and exceptions](https://github.com/MindorksOpenSource/Kotlin-Coroutines-Android-Examples)
+* We can start one coroutine in one thread and can switch to another thread to update or do someother activity 
+
 
 ```
-* We can start one coroutine in one thread and can switch to another thread to update or do someother activity 
   
  button.setOnClickListener{
  // Started in IO thread 
@@ -41,11 +42,7 @@
   return RESULT2
  }
  
- 
- 
- 
- 
- 
+
 ```
 * Coroutines have a default job for each scope defined.
 * Many coroutines can run in a single thread at once.
@@ -54,6 +51,7 @@
 * you can use a scope to cancel all running coroutines, the co-routine of particular scope
 
 * A coroutine can switch dispatchers any time after it's started. e.g a coroutine can start on the main dispatcher then use another dispatcher to parse a large JSON result off the main thread.
+
  `CoroutineScope(Dispatchers.Main + viewModelJob)`
  
 * A CoroutineScope can take a CoroutineContext as a parameter, above it takes `main` as threading policy and the job `viewModelJob`
@@ -94,6 +92,7 @@ To use coroutines we need three things: Job, Dispatcher, Scope
 * using `job.invokeOnCompletion()` is used for informing the user if something goes wrong 
 * `CoroutineScope(IO + job).launch{ } job.cancel` - this only cancels particular job, not the coroutine context
 * To update anything on mainthread toast, updateing textview use globalscope
+
  ```
   fun updateTextView(){
   GlobalScope.launch(Main){
@@ -113,6 +112,7 @@ To use coroutines we need three things: Job, Dispatcher, Scope
 * The library adds a `viewModelScope` as an extension function of the `ViewModel` class. This scope is bound to `Dispatchers.Main` and        will automatically be cancelled when the `ViewModel` is cleared.
 
 * They make use of suspend functions to perform heavy tasks which are defined outside coroutines but called in their scope.
+
    ```
    suspend fun callDb(){
    ....
@@ -134,6 +134,7 @@ suspend fun makeNetworkRequest() {
 
 suspend function fetch(): Fetch{...}
 suspend function updateUI(): updateUI {...}
+
 ```
 
 * Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
@@ -187,6 +188,7 @@ suspend fun <T>NetworkCall<T>.await(): T {
 ```
 
 * Calling the suspend function await() in suspend function `getrefreshStatus()`
+
    ```
    suspend  fun getrefreshStatus() {
 
@@ -308,7 +310,6 @@ scope.launch(Dispatchers.IO){
   individual context. This will not cancel other jobs running in the same context
 ```
 CoroutineScope(IO + job).launch{ 
-...
 }
 
 job.cancel // will cancel only this job alone, other jobs running in IO scope won't get cancelled
@@ -380,8 +381,6 @@ suspend fun primeNumber(){
 	val viewmodel = ViewModel()
 	viewmodel.loadData()
 	}
-	
- ```
  
 * runBlocking is a coroutine library and it starts a coroutine and blocks the main thread until everything finishes
 
