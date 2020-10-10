@@ -1,3 +1,17 @@
+
+Basics
+------
+
+* ~16 milliseconds to render a single frame to avoid any janky behaviour in the app
+* app processes an object for layout, the app performs the same process on all children of the layout the framework executes the layout or 
+  measure stage in a single pass and quite quickly.
+* complicated layouts may have to iterate multiple times on parts of the hierarchy that require multiple passes to resolve before ultimately positioning 
+  the elements.
+* Having to perform more than one layout-and-measure iteration is referred to as DOUBLE TAXATION
+  * A LinearLayout with layout_weight needs each child to be measured twice.
+  * GridLayout with weights or fill gravity makes it lose all the pre-processing benefits.
+  * RelativeLayout always takes at least 2 passes
+
 Grid Layout
 -----------
 * `GridLayout` arranges items in a grid of rows and columns. Assuming vertical scrolling, by default, each item in a row takes up one "span." 
