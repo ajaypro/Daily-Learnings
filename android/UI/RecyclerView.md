@@ -24,7 +24,14 @@
 * [delete, undo, swipe](https://medium.com/@zackcosborn/step-by-step-recyclerview-swipe-to-delete-and-undo-7bbae1fce27e)
 * [Generic Recyclerview for multiple lists](https://medium.com/hackernoon/recyclerview-plus-assign-kotlin-power-6f93ce980154)
  
- 
+## Basics 
+
+* `class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)` 
+* RV does not use texview to display items directly.
+* A ViewHolder describes an item view and metadata about its place within the RecyclerView
+* RecyclerView relies on this functionality to correctly position the view as the list scrolls, and to do interesting things like animate views when items are added or removed in the Adapter.
+* If RecyclerView does need to access the views stored in the ViewHolder, it can do so using the view holder's itemView property. RecyclerView uses itemView when it's binding an item to display on the screen, when drawing decorations around a view like a border, and for implementing accessibility. 
+
  # Performance Improvement
 
 ## Recyclerview
@@ -50,6 +57,9 @@
     difference in list 
   * Also internally implements getItem() and getItemCount(), we don't need to call in adapter
   * AsyncListDiffer a helper for computing differences between two lists with on DiffUtil and runs on bg thread
+  * Your code needs to tell the ListAdapter when a changed list is available. ListAdapter provides a method called 
+    submitList() to tell ListAdapter that a new version of the list is available. When this method is called, the ListAdapter diffs 
+    the new list against the old one and detects items that were added, removed, moved, or changed
   * [in depth blog](https://medium.com/@hackathon.blog.42/listadapter-renewed-9b5b496198e2)
   
 POM - ViewHolder as singleton
