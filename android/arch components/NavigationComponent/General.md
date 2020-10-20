@@ -47,3 +47,12 @@ override fun onSupportNavigateUp(): Boolean {
 
 * SafeArgs: Starting external activity using intents with Safeargs which offers `NavDirection` classes
 * [Please check here](https://codelabs.developers.google.com/codelabs/kotlin-android-training-start-external-activity/index.html#6)
+
+## New releases to be worked 
+
+Navigating to dialogs
+---------------------
+
+**Scenario:** If i have a list of brands that I have used and another list of brands that I have not used so when i wanted to edit few brands. I wanted to pop up the dialog instead of moving to another fragment or activity to do the work   we can use dialog from navigation component. 
+
+YTD - very good code sample to learn - https://github.com/android/architecture-components-samples/tree/main/MADSkillsNavigationSample
