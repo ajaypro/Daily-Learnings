@@ -4,8 +4,14 @@
 
 ## Basics
 
-* Services can be started with `startForegroundService(Intent)`  which takes an explicit intent, with a persistant notification that 
-  shows users the service is running in foreground
+* Service `onCreate()` gets called only once.
+* Notifcation to be created should be in `onStartCommand` and it will get executed only for API 26 for API 25 and lower it does not get executed. 
+* Since service is running in foreground its unlikely to get killed by system so the return of `onStartCommand` can be START_NOTSTICKY - does not restart service when os kills it.
+* Services can be started 
+  * from background: with `startForegroundService(Intent)` which takes an explicit intent when starting, with a persistant notification that shows users the service is running in foreground and in `onStartCommand(Intent, flags, ids)` we should give `startForground(notificationID, notification)` else the system will
+   close the OS in 5 secs. 
+  * from foreground: with `startService(Intent)` which takes intent when starting, with a persistant notification that shows users the service is running in foreground and in `onStartCommand(Intent, flags, ids)` we should give `startForground(notificationID, notification)` else the system will throw `IllegalStateException`. 
+* Other components can access a service from other applications also, in case if you want to avoid mark it as private in manifest
 * Services lifecycle is 
      ```
      onCreate()
