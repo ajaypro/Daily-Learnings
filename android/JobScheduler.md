@@ -4,23 +4,30 @@
 * `JobService` extends JobService class and overriding few methods. 
 * `onStartJob()` - will start the job once the conditions are met which are given like network connectvitiy, battery strength and
 the job scheduler runs on main thread. 
+* Once the job is finished in `onStartJob()` we should call `jobFinsihed(params, reScheudle = false)` tells the system the job is finished.
 * We need to defer it to another thread or coroutines for longer operations and `return true` if the job is finished running else 
  `return false` else still running. 
 * `onStopJob()` is called by the system when the job gets cancelled due to none of the conditions met use this for safety 
 checks and `return true` if you want system to continue run the jobs.
+* If `onStopJob()` returns false we don't have to continue the job also we should be define `jobCancelled = true` so that system knows we are cancelling the
+  job.
 * `JobFinished()` need to called to inform that job is been completed i.e when onStartJob returns true, so that the system releases
 wakelocks.  `JobFininshed(job, boolean)` job - indicating which job and boolean tells whether to continue the job 
 * Mention jobservice in manifest file and add permission so that jobscheduler will call your jobs that can access `JobService`
 * Finally you can create `JobScheduler` object and schedule the job. 
+* When defining job in activity or anywhere else we will see `JobInfo.setpersistent(true)` this will keep job alive even when we reboot our device.
 
 Code Snippet
 
-`JobScheduler jobscheduler = (JobScheduler)
+```
+JobScheduler jobscheduler = (JobScheduler)
 getSystemService(Context.JOB_SCHEDULER_SERVICE);
 jobscheduler.schedule(new JobInfo.Builder (LOAD_ARTWORK_JOB_ID,
   new ComponentName(this. DownloadArtworkJobService.class))
             .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-            .build())`
+            .build())
+            
+ ```
             
 ## Blogs 
 
