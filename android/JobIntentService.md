@@ -2,7 +2,7 @@ Basics
 ------
 
 * lifecycle: `onCreate()`, `onHandleWork(Intent)`, `onDestroy()`, `onStopCurrentWork()`
-* Don't have to handle wakelocks as jobintentservice itself will take of it. 
+* Don't have to handle wakelocks as jobintentservice itself will take of it as it will taken care by  its superclass
 * `onStopCurrentWork()` will be executed when job scheduler stops the current job only in API 26 & above
   * when system is in high memory pressure
   * in doze mode
