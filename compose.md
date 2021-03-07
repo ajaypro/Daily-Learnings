@@ -74,4 +74,5 @@ fun ClickCounter(clicks: Int, onClick: () -> Unit) {
  which is to displayed in the text so only text will be recomposed with new data and button remains the same this is how compose intelligently recomposes without
   recomposing the entire UI tree can be computationally expensive, which uses computing power and battery life. 
 * Skipping all functions or lambdas that don't have changed parameters
+* Composable functions should be fast to avoid jank during animations. If you need to do expensive operations, such as reading from shared preferences, do it in a    background coroutine and pass the value result to the composable function as a parameter.
   
