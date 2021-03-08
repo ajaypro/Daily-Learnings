@@ -55,6 +55,32 @@ fun tesla(model: String) {
   This causes the UI elements to be redrawn--this process is called **recomposition**.
 * Composable functions are very sophisticated where we can use loops, if conditions to decide to show the UI elements power and flexibility is 
   one of the key advantages of Jetpack Compose.
+* Composable functions can execute in any order, it has the option of recognizing that some UI elements are higher priority than others, and drawing them first.
+* Composable functions can run in parallel, Compose take advantage of multiple cores, and run composable functions not on the screen at a lower priority. 
+  This optimization means a composable function might execute within a pool of background threads. If a composable function calls a function on a ViewModel, Compose might call that function from several threads at the same time.
+* When a composable function is invoked, the invocation might occur on a different thread from the caller. That means code that modifies variables in a composable lambda should be avoided–both because such code is not thread-safe, and because it is an impermissible side-effect of the composable lambda.
+
+```
+
+@Composable
+@Deprecated("Example with bug")
+fun ListWithBug(myList: List<String>) {
+    var items = 0
+
+    Row(horizontalArrangement = Arrangement.SpaceBetween) {
+        Column {
+            for (item in myList) {
+                Text("Item: $item")
+                items++ // Avoid! Side-effect of the column recomposing.
+            }
+        }
+        Text("Count: $items")
+    }
+}
+
+```
+* In this example, items is modified with every recomposition. That could be every frame of an animation, or when the list updates. Either way, the UI will display the wrong count. Because of this, writes like this are not supported in Compose; by prohibiting those writes, we allow the framework to change threads to execute composable lambdas.
+
 ## Recomposition 
 
 * In an imperative UI model, to change a widget, you call a setter on the widget to change its internal state. In Compose, 
@@ -75,4 +101,6 @@ fun ClickCounter(clicks: Int, onClick: () -> Unit) {
   recomposing the entire UI tree can be computationally expensive, which uses computing power and battery life. 
 * Skipping all functions or lambdas that don't have changed parameters
 * Composable functions should be fast to avoid jank during animations. If you need to do expensive operations, such as reading from shared preferences, do it in a    background coroutine and pass the value result to the composable function as a parameter.
+
+## Important points to note
   
