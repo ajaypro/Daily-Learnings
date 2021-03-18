@@ -80,6 +80,7 @@ fun ListWithBug(myList: List<String>) {
 
 ```
 * In this example, items is modified with every recomposition. That could be every frame of an animation, or when the list updates. Either way, the UI will display the wrong count. Because of this, writes like this are not supported in Compose; by prohibiting those writes, we allow the framework to change threads to execute composable lambdas.
+* The more code you have outside of the Activity, the more you can share and reuse.
 
 ## Recomposition 
 
