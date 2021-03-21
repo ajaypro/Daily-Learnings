@@ -6,6 +6,7 @@
   This is possible because the gRPC is built on top of the HTTP/2 protocol, supporting bidirectional streaming and using efficient Protocol Buffers for 
   the data transfer. 
 * [Basics google dev link](https://developer.android.com/guide/topics/connectivity/grpc?authuser=1)
+* [gRPC Kotlin](https://developers.googleblog.com/2020/12/announcing-grpc-kotlin-10-for-android.html)
 ### Bidirectional streaming:  
  * Both the client and the server sends multiple messages to each other. Using this type of rpc call, can be a little bit more complicated, 
    since you have to take care of error handling from the server side and the client side.
