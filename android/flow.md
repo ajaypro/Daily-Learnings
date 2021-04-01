@@ -127,4 +127,5 @@ Intermidiate operators
 
 * Parallelism is when tasks literally run at the same time, e.g., on a multicore processor. 
 * Threads in non-parallel concurrency appear to run at the same time but in reality they don't. In non - parallel concurrency threads rapidly switch and take turns to use the processor through time-slicing. While in parallelism there are multiple processors available so, multiple threads can run on different processors at the same time. 
+* Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.
   
