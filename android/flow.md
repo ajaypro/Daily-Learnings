@@ -118,7 +118,7 @@ Intermidiate operators
     ```
      optA runs on contextA as the first is given preference. 
 
-## Structured Concurrency ##:  
+## Structured Concurrency:  
  * Flow internally uses coroutines to produces and collect values, so scope a coroutineScope is required to launch flow so it is structured so that we can always
    cancel the scopes in our UI such as viewmodel or activity or fragment. Flow cannot work in standalone 
   
