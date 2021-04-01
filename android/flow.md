@@ -120,5 +120,11 @@ Intermidiate operators
 
 ## Structured Concurrency:  
  * Flow internally uses coroutines to produces and collect values, so scope a coroutineScope is required to launch flow so it is structured so that we can always
-   cancel the scopes in our UI such as viewmodel or activity or fragment. Flow cannot work in standalone 
+   cancel the scopes in our UI such as viewmodel or activity or fragment. Flow cannot work in standalone.
+
+## Concurrency: 
+* Concurrency is when two or more tasks can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
+
+* Parallelism is when tasks literally run at the same time, e.g., on a multicore processor. 
+* Threads in non-parallel concurrency appear to run at the same time but in reality they don't. In non - parallel concurrency threads rapidly switch and take turns to use the processor through time-slicing. While in parallelism there are multiple processors available so, multiple threads can run on different processors at the same time. 
   
