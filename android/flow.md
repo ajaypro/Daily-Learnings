@@ -118,6 +118,11 @@ Intermidiate operators
     ```
      optA runs on contextA as the first is given preference. 
 
+## Streams : 
+* Stream elements be emitted at different speeds — sometimes in bursts, other times in a trickle — but in many cases we’re not guaranteed to process emitted elements at all, sometimes there might not be in memory yet
+* Asynchronous Stream processing: Stream processing is the processing of data in motion, computing on data directly as it is produced when the data is emitted at 
+  different speeds, in bursts  which is asynchrounous in nature.
+
 ## Structured Concurrency:  
  * Flow internally uses coroutines to produces and collect values, so scope a coroutineScope is required to launch flow so it is structured so that we can always
    cancel the scopes in our UI such as viewmodel or activity or fragment. Flow cannot work in standalone.
