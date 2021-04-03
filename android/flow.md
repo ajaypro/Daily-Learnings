@@ -2,6 +2,7 @@ Basics
 ------
 
 * A flow is cold asynchornous data stream that sequentially emits values normally or throws exception
+* Flow return multiple values asynchronously, and over time, since its asynchronous the time to get response may vary from few ms to serveral secs
 * Flow is basically to handle asynchronous stream of data coming from server to client side(android)
 * It is designed based on producer and collector model where the data is emited by flow and collected
 * The producer and consumer will run in same coroutine, so if producer is suspended so will the consumer which causes the delay in producer until 
@@ -117,6 +118,10 @@ Intermidiate operators
 
     ```
      optA runs on contextA as the first is given preference. 
+     
+## Sequences: 
+* Sequences use Iterators under the hood and block while waiting for the next item. Sequences are lazily evaluated. This means they produce values as you iterate over them, instead of producing them all at once.     
+* Used for synchronous streams - incoming data at regular intervals
 
 ## Streams : 
 * Stream elements be emitted at different speeds — sometimes in bursts, other times in a trickle — but in many cases we’re not guaranteed to process emitted elements at all, sometimes there might not be in memory yet
@@ -126,6 +131,8 @@ Intermidiate operators
 ## Structured Concurrency:  
  * Flow internally uses coroutines to produces and collect values, so scope a coroutineScope is required to launch flow so it is structured so that we can always
    cancel the scopes in our UI such as viewmodel or activity or fragment. Flow cannot work in standalone.
+ * coroutines live for a limited amount of time. This time is connected to the CoroutineScope you start your coroutines in.
+ * When you cancel the scope, you also release any running coroutines. The same rules apply to Kotlin Flow as well. When you cancel the scope, you also dispose of the Flow. You don’t have to free up memory manually!
 
 ## Concurrency: 
 * Concurrency is when two or more tasks can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
