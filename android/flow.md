@@ -5,6 +5,7 @@ Basics
 * Flow return multiple values asynchronously, and over time, since its asynchronous the time to get response may vary from few ms to serveral secs
 * Flow is basically to handle asynchronous stream of data coming from server to client side(android)
 * It is designed based on producer and collector model where the data is emited by flow and collected
+* Flow can be started multiple times as creates new producer and emits values
 * The producer and consumer will run in same coroutine, so if producer is suspended so will the consumer which causes the delay in producer until 
   consumer completes
 
