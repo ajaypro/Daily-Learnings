@@ -42,6 +42,34 @@ Basics
 *  Flow is cold, so only when we start collecting we will get it.
 *  In flow the emitted data is collected aand then the next data is emitted
 
+Flow Builders
+-------------
+* flow{} - create a Flow from a suspendable lambda block
+```
+val namesFlow = flow {
+  val names = listOf("Jody", "Steve", "Lance", "Joe")
+  for (name in names) {
+    delay(100)
+    emit(name)
+  }
+}
+
+```
+* channelFlow{} - uses a channel to communicate to collector
+* flowOf() - for fixed set of values 
+
+```
+val namesFlow = flowOf("Jody", "Steve", "Lance", "Joe") 
+
+```
+* asFlow() - you can convert various collections and sequences to a Flow
+
+```
+val namesFlow = listOf("Jody", "Steve", "Lance", "Joe").asFlow()
+
+```
+
+
 how flow works internally
 -------------------------
 * Problem: Below suspend function when called in main() (calling function) it will suspend the caller until the foo() completes its execution and main() is 
