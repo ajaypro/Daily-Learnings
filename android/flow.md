@@ -203,4 +203,11 @@ Intermidiate operators
 * Parallelism is when tasks literally run at the same time, e.g., on a multicore processor. 
 * Threads in non-parallel concurrency appear to run at the same time but in reality they don't. In non - parallel concurrency threads rapidly switch and take turns to use the processor through time-slicing. While in parallelism there are multiple processors available so, multiple threads can run on different processors at the same time. 
 * Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.
+
+## StateFlow: 
+
+* StateFlow needs to have an initial-value, LiveData doesn't, it's an optional
+* StateFlow will remain active when your app in the background, but to make is lifecycle aware in activity when we try to collect stateflow in coroutine 
+  by using `launch{}` which will be active when app is in background, use `launchWhenStarted{}`then stateflow will be active on UI's started and resumed state.
+* With Stateflow, you can use Flow operators, and that is something you can't do with LiveData
   
