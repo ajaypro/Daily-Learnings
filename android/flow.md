@@ -149,13 +149,14 @@ Intermidiate operators
 * `.buffer()` flow produces the data and internally creates a channel and uses two different coroutines one to produce and another to collect so that it can send   data simultaneously when producing it and the `.collect{}` takes the values from channel.
 *  FlowContext: It is a context in which the `.collect{}` context works to get data even the producer works in same context
 *  FlowOn: its changes the context of the flow that it is applied on (Basically applying dispatchers)
-   e.g  ```
+
+    ```
         dataFlow()
          .mapOn{optA()} // in contextA
          .flowOn(Dispathers.IO)
          .mapOn{optB()}
 
-       ```
+    ```
    Implementation of `flowOn` creates a separate coroutine with specified context to generate flow  and `.mapOn{optB()}` will emit in collector's context which is
   different coroutine.
 * Context Preservation: the context of collector does not get leaked or progated down the stream.
