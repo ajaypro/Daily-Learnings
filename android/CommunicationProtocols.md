@@ -2,7 +2,8 @@ MQTT
 ----
 
 * (MQTT)Message Queuing Telemetry Transport is a lightweight, publish-subscribe network protocol that transports messages between devices over TCP/IP proctocol
-   and any network protocol that provides ordered, lossless, bi-directional connections can support MQTT
+   and any network protocol that provides ordered, lossless, bi-directional connections can support MQTT.
+* Carries light weight data and low powered suitable for mobiles   
 * MQTT has a variety of other useful features, e.g. retained messages, such that subscribers immediately receive the message, 
   and the LWT (Last Will and Testament) which is a message that can be sent automatically if the client abnormally disconnect.
 * Extra abstractions on top of basic message sending, so that multiple interested parties can subscribe to messages that may interest them. 
@@ -30,8 +31,16 @@ Http/2
 * Finally, HTTP/2 now implements server push—which allows it to push data to clients without waiting for requests—negating a deficiency that was 
   usually handled by Websockets in the previous version. HTTP/2 should work well for IoT, as its compact transmissions and low overhead will certainly
   lessen the strain on hardware in terms of memory and battery consumption. 
-* the server push introduced in HTTP/2 transmits to the client, but it does not push directly to a client application. For this, many devices would still require an additional handshake 
-   like the one provided by a Websocket.  
+* The server push introduced in HTTP/2 transmits to the client, but it does not push directly to a client application. For this, many devices would still require an additional handshake like the one provided by a Websocket.  
+
+## Problems solved: 
+* Solves `line of blocking` such  many objects can be downloaded in single TCP connection, unlike TCP connection in HTTP where only one object per connection can be  
+  downloaded.  
+* Uses streaming model to send and receive data 
+* Multiplexing of requests, stream dependencies(client can prioritise requests), TCP optimizations
+* sending and receiving data in async mode, saving time ,also data transported is in binary format which takes less memory
+* Server pushes mechanism is data been pushed by server to client based what client would already expect 
+   * e.g recyclerview will load and show data from making network request and the server knows the data type and send these in advance without another netowkr request
 
 Websockets
 ----------
