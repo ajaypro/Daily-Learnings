@@ -3,9 +3,9 @@ Basics
 
 * A flow is cold asynchornous data stream that sequentially emits values normally or throws exception
 * Flow return multiple values asynchronously, and over time, since its asynchronous the time to get response may vary from few ms to serveral secs
-* Flow is basically to handle asynchronous stream of data coming from server to client side(android)
-* It is designed based on producer and collector model where the data is emited by flow and collected
-* Flow can be started multiple times as creates new producer and emits values
+* It is designed based on producer and collector model where the data is emited by flow and collected, it can be restarted multiples and each time it creates 
+  a new producer and emits values.
+* Every flow builder internally implements coroutine which calls its corresponding suspend functions.
 * The producer and consumer will run in same coroutine, so if producer is suspended so will the consumer which causes the delay in producer until 
   consumer completes
 
@@ -17,6 +17,7 @@ Basics
       emit(1000L)
       println("Hello World")
     }
+
    ``` 
    ```
    Consumer - consumer collecting in same coroutine which causes delay of 2 sec and then returns controls to producer which produces with 1 sec delay
@@ -70,16 +71,7 @@ val namesFlow = listOf("Jody", "Steve", "Lance", "Joe").asFlow()
 ```
 how flow works internally
 -------------------------
-* Problem: Below suspend function when called in main() (calling function) it will suspend the caller until the foo() completes its execution and main() is 
-  executed, when dealing with streaming apis which gives continous values we need to get values instantly without suspending .
-  * Sequences: Using sequence (data type) untill it gets values from streaming api or wss the calling method needs to wait 
-  * Channels: Can get data and send in another channel to be received but channels are hot
-    * e.g if producer produces a data stream and if collector channel drops the reference(i.e if collector does not receive) then the producer channel remains 
-        suspend forever because there is no receiver and the job is not finished so remaining jobs will be held because there is coroutine working on other
-        part of channel to produce so from receiver we cannot be drop the reference and suspended forever 
-  * Solution: Using different coroutines for different functions such as one coroutine to get value from foo() and simultaneously collect value in another 
-   coroutine
- 
+
 ```
 suspend fun foo(): List<Response> = buildList {
    add(compute("A"))
@@ -92,6 +84,17 @@ fun main() = runBlocking {
  for(x in list) println(x)
 
 ```
+* Problem: Above suspend function `foo()` when called in main() (calling function) it will suspend the caller until the foo() completes its execution and main() is 
+  executed, when dealing with streaming apis which gives continous values we need to get values instantly without suspending .
+  * Sequences: Using sequence (data type) untill it gets values from streaming api or wss the calling method needs to wait 
+  * Channels: Can get data and send in another channel to be received but channels are hot
+    * e.g if producer produces a data stream and if collector channel drops the reference(i.e if collector does not receive) then the producer channel remains 
+        suspend forever because there is no receiver and the job is not finished so remaining jobs will be held because there is coroutine working on other
+        part of channel to produce so from receiver we cannot drop the reference and suspended forever 
+  * Solution: Using different coroutines for different functions such as one coroutine to get value from foo() and simultaneously collect value in another 
+   coroutine
+ 
+
 Flow behind the scenes
 ----------------------
 
@@ -192,18 +195,20 @@ Intermidiate operators
 * Asynchronous Stream processing: Stream processing is the processing of data in motion, computing on data directly as it is produced when the data is emitted at 
   different speeds, in bursts  which is asynchrounous in nature.
 
-## Structured Concurrency:  
- * Flow internally uses coroutines to produces and collect values, so scope a coroutineScope is required to launch flow so it is structured so that we can always
-   cancel the scopes in our UI such as viewmodel or activity or fragment. Flow cannot work in standalone.
- * coroutines live for a limited amount of time. This time is connected to the CoroutineScope you start your coroutines in.
- * When you cancel the scope, you also release any running coroutines. The same rules apply to Kotlin Flow as well. When you cancel the scope, you also dispose of the Flow. You don’t have to free up memory manually!
 
 ## Concurrency: 
 * Concurrency is when two or more tasks can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
-
-* Parallelism is when tasks literally run at the same time, e.g., on a multicore processor. 
-* Threads in non-parallel concurrency appear to run at the same time but in reality they don't. In non - parallel concurrency threads rapidly switch and take turns to use the processor through time-slicing. While in parallelism there are multiple processors available so, multiple threads can run on different processors at the same time. 
 * Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.
+
+## Parallelism: 
+* It is when tasks literally run at the same time, e.g., on a multicore processor. 
+* Threads in non-parallel concurrency appear to run at the same time but in reality they don't. In non - parallel concurrency threads rapidly switch and take turns to use the processor through time-slicing. While in parallelism there are multiple processors available so, multiple threads can run on different processors at the same time. 
+
+## Structured Concurrency:  
+ * Flow internally uses coroutines to produces and collect values, so scope a coroutineScope is required to launch flow so it is structured so that we can always
+   cancel the scopes in our UI such as viewmodel or activity or fragment. Flow cannot work in standalone.
+ * Scope of coroutines live for a limited amount of time. This time is connected to the CoroutineScope you start your coroutines in.
+ * When you cancel the scope, you also release any running coroutines. The same rules apply to Kotlin Flow as well. When you cancel the scope, you also dispose of the Flow. You don’t have to free up memory manually!
 
 ## StateFlow: 
 
