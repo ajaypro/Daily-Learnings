@@ -261,6 +261,12 @@ fun refreshStatus() {
 * Uncaught exceptions in a coroutine scope are similar to uncaught exceptions in non-coroutine code. By default, they'll cancel the job that was passed 
 to the scope and pass the exception to the uncaughtExceptionHandler
 
+## Mutex
+
+* Helps in accessing a shared resources without being altered when accessed by multiple coroutines at sametime. 
+* The mutex is Kotlin’s mechanism to help us control access to shared resources via a suspending function. The mutex provides us with mutual exclusion: it allows a single coroutine to access a shared resource while any other coroutines attempting to access that same shared resource will suspend execution. The mutex helps to keep things working smoothly and deliver expected outcomes in shared resource situations.
+* [good mutex blog](https://medium.com/mobile-app-development-publication/mutex-for-coroutines-5f4a4ca60763)
+
 ## Blogs
 
 * (coroutines over Rxjava) [https://proandroiddev.com/forget-rxjava-kotlin-coroutines-are-all-you-need-part-1-2-4f62ecc4f99b]
