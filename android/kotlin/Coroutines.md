@@ -165,7 +165,8 @@ suspend function fetch(): Fetch{...}
 suspend function updateUI(): updateUI {...}
 
 ```
-
+* Cancelling the network request using `withTimeout(delaytime in secs)` which internally creates a new coroutine and cancells the job asap if the job is not 
+  completed within the given time mentioned as delay time in `withTimeout(3000L)` .
 * Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
 
 * Consider this example code 
@@ -214,6 +215,7 @@ suspend fun <T>NetworkCall<T>.await(): T {
 
     }
 }
+
 ```
 
 * Calling the suspend function await() in suspend function `getrefreshStatus()`
@@ -265,6 +267,7 @@ fun refreshStatus() {
        }
    }
 }
+
 ```
 
 * Replaced code after implementing co-routine scope, as we leverage `viewModelScope` offered by KTX, this takes the pain of clearing the `viewModelScope`
