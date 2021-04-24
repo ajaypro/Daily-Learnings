@@ -106,22 +106,20 @@ To use coroutines we need three things: Job, Dispatcher, Scope
 
 ``` 
 
-runBlocking {
-                Log.i(TAG, "runBlocking0 ${Thread.currentThread().name}")
+launch(Dispatchers.IO) {
 
-                val job = launch(Dispatchers.IO){
+                    val job = launch {
+                        Log.i(TAG, "runBlocking1 ${Thread.currentThread().name}")
+                        delay(2000L)
+                    }
+                    job.join()
 
-                    Log.i(TAG, "runBlocking1 ${Thread.currentThread().name}")
-                    delay(3000L)
+                    launch {
+
+                        Log.i(TAG, "runBlocking2 ${Thread.currentThread().name}")
+                        delay(2000L)
+                    }
                 }
-                job.join()
-
-                launch(Dispatchers.IO){
-
-                    Log.i(TAG, "runBlocking2 ${Thread.currentThread().name}")
-                    delay(3000L)
-                }
-            }
 	 
  ```
 	 
