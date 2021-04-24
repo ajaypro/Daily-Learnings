@@ -101,6 +101,34 @@ To use coroutines we need three things: Job, Dispatcher, Scope
   ```
 * If a job is cancelled only a new job is started, we cannot resuse the old job  
 
+## Jobjoin - 
+*
+
+``` 
+
+runBlocking {
+                Log.i(TAG, "runBlocking0 ${Thread.currentThread().name}")
+
+                val job = launch(Dispatchers.IO){
+
+                    Log.i(TAG, "runBlocking1 ${Thread.currentThread().name}")
+                    delay(3000L)
+                }
+                job.join()
+
+                launch(Dispatchers.IO){
+
+                    Log.i(TAG, "runBlocking2 ${Thread.currentThread().name}")
+                    delay(3000L)
+                }
+            }
+	 
+ ```
+	 
+* `job.join()` is a function which will wait until the current job is completed and then start ther new job in the above code first launch block will complete and 
+  then second launch block will continue. if no `job.join()` is given both launch block will be executed simultaneously.
+	    
+
 ## Dispatcher 
 * The dispatcher sends off coroutines to run on various threads. For example, Dispatcher.Main runs tasks on the main thread, and Dispatcher.IO offloads blocking I/O tasks to a shared pool of threads.
 
