@@ -49,6 +49,7 @@
 * Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
 * A scope controls the lifetime of coroutines through its job. When you cancel the job of a scope, it cancels all coroutines started in    that scope
 * you can use a scope to cancel all running coroutines, the co-routine of particular scope
+* If the main thread finishes the work, though the coroutine is running in different thread will be cancelled because the main thread of OS takes care of presenting the UI to user
 
 * A coroutine can switch dispatchers any time after it's started. e.g a coroutine can start on the main dispatcher then use another dispatcher to parse a large JSON result off the main thread.
 
