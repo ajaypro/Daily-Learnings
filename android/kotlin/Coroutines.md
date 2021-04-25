@@ -164,8 +164,130 @@ suspend function updateUI(): updateUI {...}
 
 ```
 * Cancelling the network request using `withTimeout(delaytime in secs)` which internally creates a new coroutine and cancells the job asap if the job is not 
-  completed within the given time mentioned as delay time in `withTimeout(3000L)` .
+  completed within the given time mentioned as delay time in `withTimeout(3000L)` . we can use this to cancel network requests
 * Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
+
+## Exception handling & job cancellation
+
+* This handler will help parent to handle exceptions and this handler does not help child to handle the exceptions.
+
+```
+val handler = CoroutineExceptionHandler { _, exception ->
+        println("Exception thrown in one of the children: $exception")
+    }
+
+fun main(){
+        val parentJob = CoroutineScope(IO).launch(handler) {
+
+            // --------- JOB A ---------
+            val jobA = launch {
+                val resultA = getResult(1)
+                println("resultA: ${resultA}")
+            }
+            jobA.invokeOnCompletion { throwable ->
+                if(throwable != null){
+                    println("Error getting resultA: ${throwable}")
+                }
+            }
+
+            // --------- JOB B ---------
+            val jobB = launch {
+                val resultB = getResult(2)
+                println("resultB: ${resultB}")
+            }
+            jobB.invokeOnCompletion { throwable ->
+                if(throwable != null){
+                    println("Error getting resultB: ${throwable}")
+                }
+            }
+
+            // --------- JOB C ---------
+            val jobC = launch {
+                val resultC = getResult(3)
+                println("resultC: ${resultC}")
+            }
+            jobC.invokeOnCompletion { throwable ->
+                if(throwable != null){
+                    println("Error getting resultC: ${throwable}")
+                }
+            }
+        }
+        parentJob.invokeOnCompletion { throwable ->
+            if(throwable != null){
+                println("Parent job failed: ${throwable}")
+            }
+            else{
+                println("Parent job SUCCESS")
+            }
+        }
+    }
+
+    suspend fun getResult(number: Int): Int{
+        return withContext(Main){
+            delay(number*500L)
+            if(number == 2){
+//                cancel(CancellationException("Error getting result for number: ${number}"))
+//                throw CancellationException("Error getting result for number: ${number}") // treated like "cancel()"
+                throw Exception("Error getting result for number: ${number}")
+            }
+            number*2
+        }
+    }
+
+```
+* Follow (this repo for cancellations and structured concurrency)[https://github.com/mitchtabian/Kotlin-Coroutine-Examples/tree/structured-concurrency]
+## Scenario 1: 
+
+* From above code if child job fails its corresponding children also fail and exception propogated to parent.
+
+## Scenario 2: Cancelling job 
+
+* If we are cancelling the job inside the job wont cancel the job such as like below 
+
+```
+suspend fun getResult(number: Int): Int{
+        return withContext(Main){
+            delay(number*500L)
+            if(number == 2){
+                cancel(CancellationException("Error getting result for number: ${number}"))
+            }
+            number*2
+        }
+```
+instead we need to cancel on the job itself like but parent job succeeds 
+
+```
+val jobB = launch {
+                val resultB = getResult(2)
+                println("resultB: ${resultB}")
+            }
+           jobB.cancel()
+            jobB.invokeOnCompletion { throwable ->
+                if(throwable != null){
+                    println("Error getting resultB: ${throwable}")
+                }
+            }
+
+```
+
+## Scenario 3: Using CancellationException on the job
+
+* there is  `CancellationException` from the coroutine that can thrown within the job if job fails like below, this cancels the job and continues with remaining
+  jobs 
+
+```
+suspend fun getResult(number: Int): Int{
+        return withContext(Main){
+            delay(number*500L)
+            if(number == 2){
+             throw CancellationException("Error getting result for number: ${number}") // treated like "cancel()"
+     
+            }
+            number*2
+        }
+    }
+
+```
 
 * Consider this example code 
 
