@@ -167,6 +167,39 @@ suspend function updateUI(): updateUI {...}
   completed within the given time mentioned as delay time in `withTimeout(3000L)` . we can use this to cancel network requests
 * Kotlin has a method Deferred.await() that is used to wait for the result from a coroutine started with the async builder.
 
+## SupervisorJobScope 
+
+* Children can fail independently inside a supervisorjob and its cancellation or failure will cause the supervisor job to fail
+
+```
+val parentJob = CoroutineScope(Main).launch(handler) {
+
+            supervisorScope { // *** Make sure to handle errors in children ***
+
+                // --------- JOB A ---------
+                val jobA =  launch {
+                    val resultA = getResult(1)
+                    println("resultA: ${resultA}")
+                }
+
+                // --------- JOB B ---------
+                val jobB = launch(childExceptionHandler) {
+                    val resultB = getResult(2)
+                    println("resultB: ${resultB}")
+                }
+
+                // --------- JOB C ---------
+                val jobC = launch {
+                    val resultC = getResult(3)
+                    println("resultC: ${resultC}")
+                }
+            }
+        }
+
+```
+
+* You always pass the exception handler to children so they handle the exception and rest of the jobs run successfully without bein cancelled or failed.
+
 ## Exception handling & job cancellation
 
 * This handler will help parent to handle exceptions and this handler does not help child to handle the exceptions.
