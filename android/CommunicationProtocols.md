@@ -20,6 +20,11 @@ MQTT
 * Well suited for IOT as it has machine to machine communication which none other protocols offer  
 
 
+HTTP 1
+------
+
+* CORS - CORS also relies on a mechanism by which browsers make a “preflight” request to the server hosting the cross-origin resource, in order to check that the server will permit the actual request. In that preflight, the browser sends headers that indicate the HTTP method and headers that will be used in the actual request.
+* 
 Http/2
 ------
 
