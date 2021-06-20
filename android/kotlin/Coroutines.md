@@ -464,6 +464,7 @@ to the scope and pass the exception to the uncaughtExceptionHandler
 * [async - coroutine](https://proandroiddev.com/async-operations-with-kotlin-coroutines-part-1-c51cc581ad33)
 * [scenarios based](https://medium.com/capital-one-tech/kotlin-coroutines-on-android-things-i-wish-i-knew-at-the-beginning-c2f0b1f16cff)
 * [livedata builder withcontext](https://medium.com/@velasco622/easy-coroutines-in-android-livedata-builder-withcontext-and-dispatchers-f4b3fc5a33fc)
+* [https://medium.com/androiddevelopers/coroutines-patterns-for-work-that-shouldnt-be-cancelled-e26c40f142ad](https://medium.com/androiddevelopers/coroutines-patterns-for-work-that-shouldnt-be-cancelled-e26c40f142ad)
 
 ## Job
 
